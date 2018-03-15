@@ -1,4 +1,4 @@
-# @billysutomo/data-list
+# @nodeflux/data-list
 
 React component made for showing list of data, for simplfy creating view. Equiped with standard action like edit and delete. But also can be customized with other action and icon. Currently only have two type of view which is Grid and Table
 
