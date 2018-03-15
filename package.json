@@ -1,5 +1,5 @@
 {
-  "name": "@nodeflux/data-list",
+  "name": "@nodeflux/data-multiview",
   "version": "0.1.0",
   "description": "Data List component",
   "main": "build/index.js",
