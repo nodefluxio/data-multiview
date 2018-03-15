@@ -1,4 +1,4 @@
-# @nodeflux/data-list
+# @nodeflux/data-multiview
 
 React component made for showing list of data, for simplfy creating view. Equiped with standard action like edit and delete. But also can be customized with other action and icon. Currently only have two type of view which is Grid and Table
 
@@ -6,23 +6,23 @@ React component made for showing list of data, for simplfy creating view. Equipe
 ## Installation
 
 ```
-npm install --save @billysutomo/data-list
+npm install --save @nodeflux/data-multiview
 ```
 or
 ```
-yarn add @billysutomo/data-list
+yarn add @nodeflux/data-multiview
 ```
 
 ## Usage
 
 #### CSS:
 ```css
-require("@billysutomo/data-list/build/css/index.css");
+require("@nodeflux/data-multiview/build/css/index.css");
 ```
 #### JS:
 ```js
 import  React  from  'react';
-import  DataList, { Filter, Pagination, ActionBlock } from  '@billysutomo/data-list';
+import  DataList, { Filter, Pagination, ActionBlock } from  '@nodeflux/data-multiview';
 
 export  default class  App  extends  React.Component {
 

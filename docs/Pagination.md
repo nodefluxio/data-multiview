@@ -7,7 +7,7 @@ Component for make Pagination view.
 #### JS:
 ```js
 import  React  from  'react';
-import  DataList, { Filter, Pagination, ActionBlock } from  '@billysutomo/data-list';
+import  DataList, { Filter, Pagination, ActionBlock } from  '@nodeflux/data-multiview';
 
 export  default class  App  extends  React.Component {
 
