@@ -131,14 +131,14 @@ export default class Grid extends Component {
             }
           }
           //endregion
-        }
 
-        if (itemConfig.type === "date") {
-          columnText = moment(columnText).format("DD MMM YYYY");
-          columnValue = moment(columnValue).format("DD MMM YYYY");
-        } else if (itemConfig.type === "json") {
-          columnText = null;
-          columnValue = null;
+          if (itemConfig.type === "date") {
+            columnText = moment(columnText).format("DD MMM YYYY");
+            columnValue = moment(columnValue).format("DD MMM YYYY");
+          } else if (itemConfig.type === "json") {
+            columnText = null;
+            columnValue = null;
+          }
         }
 
         listColumn.push({ text: columnText, value: columnValue });
@@ -191,19 +191,19 @@ export default class Grid extends Component {
 
       let field1 =
         itemRow[1] !== undefined ? (
-          <div className="title margin">{itemRow[1].value.value}</div>
+          <div className="title margin">{itemRow[1].value.text}</div>
         ) : (
             ""
           );
       let field2 =
         itemRow[2] !== undefined ? (
-          <div className="desc margin">{itemRow[2].value.value}</div>
+          <div className="desc margin">{itemRow[2].value.text}</div>
         ) : (
             ""
           );
       let field3 =
         itemRow[3] !== undefined ? (
-          <div className="sub-desc margin">{itemRow[3].value.value}</div>
+          <div className="sub-desc margin">{itemRow[3].value.text}</div>
         ) : (
             ""
           );

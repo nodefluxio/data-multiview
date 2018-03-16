@@ -42,7 +42,7 @@ export default class DataList extends Component {
       searchVar = filter.search;
       filterVar = filter.filter;
     }
-    
+
     let listRow = {};
     data.map(function (itemData, indexRow) {
       let listColumn = [];
@@ -89,6 +89,8 @@ export default class DataList extends Component {
             if (columnText === columnValue) {
               columnValue = JSON.stringify(columnValue);
             }
+          } else {
+            columnValue = columnValue.toString();
           }
 
           listColumn.push({ text: columnText, value: columnValue });
