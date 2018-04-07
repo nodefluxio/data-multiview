@@ -23,7 +23,10 @@ export default class Pagination extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let { config, data } = this.state;
+    let { config, data, type } = this.state;
+    if (nextProps.type !== type) {
+      this.setState({ type: nextProps.type });
+    }
     if (nextProps.config !== config) {
       this.setState({ config: nextProps.config });
     }
