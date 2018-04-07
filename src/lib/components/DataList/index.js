@@ -15,7 +15,8 @@ export default class DataList extends Component {
       type: props.type,
       config: props.config,
       data: props.data,
-      dataFilter: props.data
+      dataFilter: props.data,
+      enableActionBlock: props.enableActionBlock
     };
   }
 
@@ -89,6 +90,9 @@ export default class DataList extends Component {
             if (columnText === columnValue) {
               columnValue = JSON.stringify(columnValue);
             }
+          } else if (itemConfig.type === "datetime") {
+            columnText = moment(columnText).format("DD MMM YYYY, HH:mm");
+            columnValue = moment(columnValue).format("DD MMM YYYY, HH:mm");
           } else {
             columnValue = columnValue.toString();
           }
@@ -268,6 +272,9 @@ export default class DataList extends Component {
           if (itemConfig.type === "date") {
             text = moment(text).format("DD MMM YYYY");
             value = moment(value).format("DD MMM YYYY");
+          } else if (itemConfig.type === "datetime") {
+            text = moment(text).format("DD MMM YYYY, HH:mm");
+            value = moment(value).format("DD MMM YYYY, HH:mm");
           } else if (itemConfig.type === "json") {
             text = null;
             value = null;
@@ -315,10 +322,10 @@ export default class DataList extends Component {
   };
 
   _renderViewType() {
-    let { index, type, config, dataFilter } = this.state;
+    let { index, type, config, dataFilter, enableActionBlock } = this.state;
 
     return (
-      <Pagination type={type} config={config} data={dataFilter} onAction={this._action} index={index} />
+      <Pagination type={type} config={config} data={dataFilter} onAction={this._action} index={index} enableActionBlock={enableActionBlock}/>
     )
   }
 
@@ -337,4 +344,8 @@ DataList.propTypes = {
   config: PropTypes.array,
   data: PropTypes.array,
   action: PropTypes.func
+};
+
+DataList.defaultProps = {
+  enableActionBlock: true
 };

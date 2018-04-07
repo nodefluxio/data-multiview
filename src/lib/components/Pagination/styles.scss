@@ -73,6 +73,9 @@
       border: solid 1px #1b1b33;
       height: 44px;
       margin-top: 5px;
+      &:hover{
+        background-color: #1f1f76;
+      }
 
       & > .column-wrapper {
         align-content: center;
@@ -127,6 +130,9 @@
     max-width: 200px;
     margin-bottom: 30px;
     color: #d8d8d8;
+    &:hover{
+      background-color: #1f1f76;
+    }
 
     &:hover .image-wrapper{
       opacity: 0.5;

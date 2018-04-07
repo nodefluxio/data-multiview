@@ -11,7 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <DataList type="grid" config={configDebug} data={data} onAction={this._action} index="id" />
+        <DataList type="grid" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} />
         {/* <Pagination type="table" config={config} data={data} onAction={this._action} index="fullname" />
         <Filter config={config} data={filterData} action={this._action} />
         <ActionBlock key="1" actionName="edit" onAction={this._action} index="value">
@@ -43,7 +43,7 @@ var configDebug = [
     textPath: "id",
     valuePath: "id"
   },
-  { text: "Date", type: "date", textPath: "created_at", valuePath: "id" },
+  { text: "Date", type: "datetime", textPath: "created_at", valuePath: "id" },
   {
     text: "Feature",
     type: "string",
@@ -95,27 +95,6 @@ var data = [
   { fullname: 'nama saya', role: 'role BB', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
   { fullname: 'nama saya', role: 'role CC', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
   { fullname: 'nama saya', role: 'role CC', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role DD', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role DD', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role saya', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'oaoa', role: 'role saya', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role AA', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role BB', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role BB', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role CC', json: { "name": "binchen" }, datetime: '2018-02-06 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role CC', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role DD', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role DD', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role saya', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'oaoa', role: 'role saya', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role AA', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role BB', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role BB', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role CC', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role CC', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role DD', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'nama saya', role: 'role DD', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
-  { fullname: 'Komandan', role: 'Jenderal', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
   { fullname: 'nama saya', role: 'role DD', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
   { fullname: 'nama saya', role: 'role DD', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },
   { fullname: 'nama saya', role: 'role saya', json: { "name": "binchen" }, datetime: '2018-02-04 13:37:27.736024', image: img },

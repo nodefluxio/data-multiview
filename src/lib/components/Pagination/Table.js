@@ -50,6 +50,12 @@ export default class Table extends Component {
     return <div className="head-wrapper">{listTableHeadRow}</div>;
   }
 
+  _handleAction = val => {
+    return event => {
+      this.props.action(val);
+    };
+  };
+
   _renderRowBody() {
     let { data, config, indexPath } = this.state;
     let { children } = this.props;
@@ -61,7 +67,7 @@ export default class Table extends Component {
         if (itemConfig.type !== 'image') {
           let columnText = null;
           let columnValue = null;
-
+          let indexValue = null;
           if (itemConfig.text === "Action" && typeof children) {
             columnText = "Action";
             columnValue = [];
@@ -127,6 +133,18 @@ export default class Table extends Component {
             }
             //endregion
 
+            tempItemRow = itemData;
+            let indexPathValue = indexPath.split("/");
+            for (const x in indexPathValue) {
+              if (
+                tempItemRow[indexPathValue[x]] !== null &&
+                tempItemRow[indexPathValue[x]] !== undefined
+              ) {
+                let temp_data = tempItemRow[indexPathValue[x]];
+                indexValue = temp_data;
+              }
+            }
+
             if (itemConfig.type === "date") {
               columnText = moment(columnText).format("DD MMM YYYY");
               columnValue = moment(columnValue).format("DD MMM YYYY");
@@ -135,10 +153,13 @@ export default class Table extends Component {
               if (columnText === columnValue) {
                 columnValue = JSON.stringify(columnValue);
               }
+            } else if (itemConfig.type === "datetime") {
+              columnText = moment(columnText).format("DD MMM YYYY, HH:mm");
+              columnValue = moment(columnValue).format("DD MMM YYYY, HH:mm");
             }
           }
 
-          listColumn.push({ text: columnText, value: columnValue });
+          listColumn.push({ text: columnText, value: columnValue, index: indexValue });
           return null;
         }
         return null;
@@ -165,7 +186,7 @@ export default class Table extends Component {
         customCls += percColumn.toString() + '% ';
       }
       return (
-        <div key={indexRow} className="row-wrapper" style={{ gridTemplateColumns: customCls }}>
+        <div key={indexRow} onClick={this._handleAction(itemRow[0].index)} className="row-wrapper" style={{ gridTemplateColumns: customCls }}>
           {columns}
         </div>
       );

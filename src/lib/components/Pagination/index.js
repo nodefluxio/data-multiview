@@ -18,6 +18,7 @@ export default class Pagination extends Component {
       data: props.data,
       currentPage: 1,
       dataPerPage: 10,
+      enableActionBlock: props.enableActionBlock
     };
   }
 
@@ -51,8 +52,12 @@ export default class Pagination extends Component {
     }
   }
 
+  _actionView = (indexData) => {
+    this.props.onAction('view', indexData);
+  }
+
   _renderViewType() {
-    let { index, type, config, data, currentPage, dataPerPage } = this.state;
+    let { index, type, config, data, currentPage, dataPerPage, enableActionBlock } = this.state;
 
     const indexOfLastData = currentPage * dataPerPage;
     const indexOfFirstData = indexOfLastData - dataPerPage;
@@ -97,14 +102,18 @@ export default class Pagination extends Component {
       </a>
     )
 
-    let actionBlock = [
-      (<ActionBlock key="1" actionName="edit" onAction={this._action}>
-        <i className="icon icon-pencil" />
-      </ActionBlock>),
-      (<ActionBlock key="2" actionName="delete" onAction={this._action}>
-        <i className="icon icon-delete" />
-      </ActionBlock>)
-    ]
+    let actionBlock = null;
+    if (enableActionBlock) {
+      actionBlock = [
+        (<ActionBlock key="1" actionName="edit" onAction={this._action}>
+          <i className="icon icon-pencil" />
+        </ActionBlock>),
+        (<ActionBlock key="2" actionName="delete" onAction={this._action}>
+          <i className="icon icon-delete" />
+        </ActionBlock>)
+      ]
+    }
+
     switch (type) {
       case "grid":
         return [
@@ -112,7 +121,7 @@ export default class Pagination extends Component {
             key="1"
             config={config}
             data={currentData}
-            action={this._handleAction}
+            action={this._actionView}
             index={index}
           >
             {actionBlock}
@@ -130,7 +139,7 @@ export default class Pagination extends Component {
             key="1"
             config={config}
             data={currentData}
-            action={this._handleAction}
+            action={this._actionView}
             index={index}
           >
             {actionBlock}
@@ -153,6 +162,11 @@ export default class Pagination extends Component {
     )
   }
 }
+
+Pagination.defaultProps = {
+  enableActionBlock: true
+};
+
 
 //pagination algorithm https://gist.github.com/kottenator/9d936eb3e4e3c3e02598
 function pagination(c, m) {

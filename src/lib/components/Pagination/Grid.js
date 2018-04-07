@@ -67,14 +67,13 @@ export default class Grid extends Component {
       config.map((itemConfig, indexColumn) => {
         let columnText = null;
         let columnValue = null;
-
+        let indexValue = null;
         if (itemConfig.text === "Action" && typeof children) {
           columnText = "Action";
           columnValue = [];
           //////////////////////////////
           let tempItemRow = itemData;
           let indexPathValue = indexPath.split("/");
-          let indexValue = null;
           for (const x in indexPathValue) {
             if (
               tempItemRow[indexPathValue[x]] !== null &&
@@ -132,16 +131,32 @@ export default class Grid extends Component {
           }
           //endregion
 
+          tempItemRow = itemData;
+          let indexPathValue = indexPath.split("/");
+          
+          for (const x in indexPathValue) {
+            if (
+              tempItemRow[indexPathValue[x]] !== null &&
+              tempItemRow[indexPathValue[x]] !== undefined
+            ) {
+              let temp_data = tempItemRow[indexPathValue[x]];
+              indexValue = temp_data;
+            }
+          }
+
           if (itemConfig.type === "date") {
             columnText = moment(columnText).format("DD MMM YYYY");
             columnValue = moment(columnValue).format("DD MMM YYYY");
           } else if (itemConfig.type === "json") {
             columnText = null;
             columnValue = null;
+          } else if (itemConfig.type === "datetime") {
+            columnText = moment(columnText).format("DD MMM YYYY, HH:mm");
+            columnValue = moment(columnValue).format("DD MMM YYYY, HH:mm");
           }
         }
 
-        listColumn.push({ text: columnText, value: columnValue });
+        listColumn.push({ text: columnText, value: columnValue, index: indexValue });
         return null;
       });
       listRow.push(listColumn);
@@ -183,7 +198,6 @@ export default class Grid extends Component {
         }
         return null;
       });
-      console.log('itemRow', itemRow);
       let imageVal =
         imageVar.value.value === null || imageVar.value.value === undefined
           ? image
@@ -215,6 +229,7 @@ export default class Grid extends Component {
         <div
           key={indexRow}
           className="box-wrapper"
+          onClick={this._handleAction(itemRow[0].value.index)}
         >
           <div className="image-wrapper" style={{ background: `url(${imageVal})`, backgroundSize: '200px 150px' }} />
           <div className="block" ><div className="action-wrapper">{actionTemp}</div></div>
