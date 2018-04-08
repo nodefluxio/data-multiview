@@ -210,7 +210,7 @@ export default class Table extends Component {
         customCls += percColumn.toString() + '% ';
       }
       return (
-        <div key={indexRow} onClick={this._handleAction(itemRow[0].index)} className="row-wrapper" style={{ gridTemplateColumns: customCls }}>
+        <div key={indexRow} onClick={this._handleAction(itemRow[0].value.index)} className="row-wrapper" style={{ gridTemplateColumns: customCls }}>
           {columns}
         </div>
       );
