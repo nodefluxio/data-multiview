@@ -84,7 +84,7 @@
       display: grid;
       background-color: #0b0b23;
       border: solid 1px #1b1b33;
-      height: 44px;
+      height: 50px;
       margin-top: 5px;
 
       &:hover {
@@ -94,8 +94,15 @@
       & > .column-wrapper {
         align-content: center;
         display: grid;
-        padding: 2px 5px;
         text-align: center;
+        justify-content: center;
+        line-height: 50px;
+
+        & > .image {
+          height: 44px;
+          width: 44px;
+          background-size: 44px 44px !important;
+        }
 
         & > .action-wrapper {
           display: inline-flex;

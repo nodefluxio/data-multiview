@@ -11,7 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <DataList type="grid" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}/>
+        <DataList type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}/>
         {/* <Pagination type="table" config={config} data={data} onAction={this._action} index="fullname" />
         <Filter config={config} data={filterData} action={this._action} />
         <ActionBlock key="1" actionName="edit" onAction={this._action} index="value">
@@ -32,9 +32,9 @@ var config = [
 
 var configDebug = [
   {
-    text: "Assigment ID",
+    text: "Image",
     type: "image",
-    textPath: "id",
+    textPath: "image",
     valuePath: "image"
   },
   {

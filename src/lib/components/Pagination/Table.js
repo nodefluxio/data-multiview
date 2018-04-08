@@ -41,10 +41,7 @@ export default class Table extends Component {
   _renderRowTitle() {
     let { config } = this.state;
     let listTableHeadRow = config.map((item, i) => {
-      if (item.type !== 'image') {
-        return <div key={i}>{item.text}</div>;
-      }
-      return null;
+      return <div key={i}>{item.text}</div>;
     });
 
     return <div className="head-wrapper">{listTableHeadRow}</div>;
@@ -64,104 +61,102 @@ export default class Table extends Component {
     data.map((itemData, indexRow) => {
       let listColumn = [];
       config.map((itemConfig, indexColumn) => {
-        if (itemConfig.type !== 'image') {
-          let columnText = null;
-          let columnValue = null;
+
+        let columnText = null;
+        let columnValue = null;
+        let indexValue = null;
+        if (itemConfig.text === "Action" && typeof children) {
+          columnText = "Action";
+          columnValue = [];
+          //////////////////////////////
+          let tempItemRow = itemData;
+          let indexPathValue = indexPath.split("/");
           let indexValue = null;
-          if (itemConfig.text === "Action" && typeof children) {
-            columnText = "Action";
-            columnValue = [];
-            //////////////////////////////
-            let tempItemRow = itemData;
-            let indexPathValue = indexPath.split("/");
-            let indexValue = null;
-            for (const x in indexPathValue) {
-              if (
-                tempItemRow[indexPathValue[x]] !== null &&
-                tempItemRow[indexPathValue[x]] !== undefined
-              ) {
-                let temp_data = tempItemRow[indexPathValue[x]];
-                indexValue = temp_data;
-              }
+          for (const x in indexPathValue) {
+            if (
+              tempItemRow[indexPathValue[x]] !== null &&
+              tempItemRow[indexPathValue[x]] !== undefined
+            ) {
+              let temp_data = tempItemRow[indexPathValue[x]];
+              indexValue = temp_data;
             }
-            //////////////////////////////
-            let tempActions = [];
-            if (children.length > 0) {
-              children.map((item, itemChildren) => {
-                item = React.cloneElement(item, {
-                  index: indexValue,
-                  key: itemChildren
-                });
-                tempActions.push(item);
-                return null;
+          }
+          //////////////////////////////
+          let tempActions = [];
+          if (children.length > 0) {
+            children.map((item, itemChildren) => {
+              item = React.cloneElement(item, {
+                index: indexValue,
+                key: itemChildren
               });
+              tempActions.push(item);
+              return null;
+            });
 
-            } else {
-              tempActions = React.cloneElement(children, {
-                index: indexValue
-              });
-            }
-            columnValue = <div className="action-wrapper">{tempActions}</div>;
           } else {
-            //region Get column Text
-            let tempItemRow = itemData;
-            let textPath = itemConfig.textPath.split("/");
-            for (const x in textPath) {
-              if (
-                tempItemRow[textPath[x]] !== null &&
-                tempItemRow[textPath[x]] !== undefined
-              ) {
-                let temp_data = tempItemRow[textPath[x]];
-                tempItemRow = temp_data;
-                columnText = temp_data;
-              }
+            tempActions = React.cloneElement(children, {
+              index: indexValue
+            });
+          }
+          columnValue = <div className="action-wrapper">{tempActions}</div>;
+        } else {
+          //region Get column Text
+          let tempItemRow = itemData;
+          let textPath = itemConfig.textPath.split("/");
+          for (const x in textPath) {
+            if (
+              tempItemRow[textPath[x]] !== null &&
+              tempItemRow[textPath[x]] !== undefined
+            ) {
+              let temp_data = tempItemRow[textPath[x]];
+              tempItemRow = temp_data;
+              columnText = temp_data;
             }
-            //endregion
+          }
+          //endregion
 
-            //region Get column Value
-            tempItemRow = itemData;
-            let valuePath = itemConfig.valuePath.split("/");
-            for (const x in valuePath) {
-              if (
-                tempItemRow[valuePath[x]] !== null &&
-                tempItemRow[valuePath[x]] !== undefined
-              ) {
-                let temp_data = tempItemRow[valuePath[x]];
-                tempItemRow = temp_data;
-                columnValue = temp_data;
-              }
+          //region Get column Value
+          tempItemRow = itemData;
+          let valuePath = itemConfig.valuePath.split("/");
+          for (const x in valuePath) {
+            if (
+              tempItemRow[valuePath[x]] !== null &&
+              tempItemRow[valuePath[x]] !== undefined
+            ) {
+              let temp_data = tempItemRow[valuePath[x]];
+              tempItemRow = temp_data;
+              columnValue = temp_data;
             }
-            //endregion
+          }
+          //endregion
 
-            tempItemRow = itemData;
-            let indexPathValue = indexPath.split("/");
-            for (const x in indexPathValue) {
-              if (
-                tempItemRow[indexPathValue[x]] !== null &&
-                tempItemRow[indexPathValue[x]] !== undefined
-              ) {
-                let temp_data = tempItemRow[indexPathValue[x]];
-                indexValue = temp_data;
-              }
-            }
-
-            if (itemConfig.type === "date") {
-              columnText = moment(columnText).format("DD MMM YYYY");
-              columnValue = moment(columnValue).format("DD MMM YYYY");
-            } else if (itemConfig.type === "json") {
-              columnText = JSON.stringify(columnText);
-              if (columnText === columnValue) {
-                columnValue = JSON.stringify(columnValue);
-              }
-            } else if (itemConfig.type === "datetime") {
-              columnText = moment(columnText).format("DD MMM YYYY, HH:mm");
-              columnValue = moment(columnValue).format("DD MMM YYYY, HH:mm");
+          tempItemRow = itemData;
+          let indexPathValue = indexPath.split("/");
+          for (const x in indexPathValue) {
+            if (
+              tempItemRow[indexPathValue[x]] !== null &&
+              tempItemRow[indexPathValue[x]] !== undefined
+            ) {
+              let temp_data = tempItemRow[indexPathValue[x]];
+              indexValue = temp_data;
             }
           }
 
-          listColumn.push({ text: columnText, value: columnValue, index: indexValue });
-          return null;
+          if (itemConfig.type === "date") {
+            columnText = moment(columnText).format("DD MMM YYYY");
+            columnValue = moment(columnValue).format("DD MMM YYYY");
+          } else if (itemConfig.type === "json") {
+            columnText = JSON.stringify(columnText);
+            if (columnText === columnValue) {
+              columnValue = JSON.stringify(columnValue);
+            }
+          } else if (itemConfig.type === "datetime") {
+            columnText = moment(columnText).format("DD MMM YYYY, HH:mm");
+            columnValue = moment(columnValue).format("DD MMM YYYY, HH:mm");
+          }
         }
+
+        listColumn.push({ text: columnText, value: columnValue, index: indexValue });
         return null;
       });
       listRow.push(listColumn);
@@ -169,16 +164,45 @@ export default class Table extends Component {
     });
     //endregion
 
+    //region parsing data with type for checking type
+    let listRowParsing = [];
+    listRow.map((itemRow, indexRow) => {
+      let row = [];
+      itemRow.map((data, indexData) => {
+        let temp = {};
+        config.map((itemConfig, indexConfig) => {
+          if (indexConfig === indexData) {
+            if (itemConfig.text === 'Action') {
+              temp.type = 'Action';
+              temp.value = data;
+            } else {
+              temp.type = itemConfig.type;
+              temp.value = data;
+            }
+          }
+          return null;
+        });
+        row.push(temp);
+        return null;
+      });
+      listRowParsing.push(row);
+      return null;
+    });
+    //endregion
+
     //region Render Row and Column
-    let rows = listRow.map((itemRow, indexRow) => {
+    let rows = listRowParsing.map((itemRow, indexRow) => {
       let columns = itemRow.map((itemColumn, indexColumn) => {
         let value =
-          itemColumn.text === "Action" ? itemColumn.value : itemColumn.text;
-        return (
-          <div key={indexColumn} className="column-wrapper">
-            {value}
-          </div>
-        );
+          itemColumn.type === "Action" ? itemColumn.value.value : itemColumn.value.text;
+        let imageVal =
+          itemColumn.value.value === null || itemColumn.value.value === undefined
+            ? ''
+            : itemColumn.value.value;
+
+        return (<div key={indexColumn} className="column-wrapper">
+          {itemColumn.type != "image" ? value : <div className="image" style={{ background: `url(${imageVal})` }} />}
+        </div>);
       });
       let percColumn = 100 / columns.length;
       let customCls = '';
