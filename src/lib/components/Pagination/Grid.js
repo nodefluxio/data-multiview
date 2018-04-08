@@ -133,7 +133,7 @@ export default class Grid extends Component {
 
           tempItemRow = itemData;
           let indexPathValue = indexPath.split("/");
-          
+
           for (const x in indexPathValue) {
             if (
               tempItemRow[indexPathValue[x]] !== null &&
@@ -231,7 +231,7 @@ export default class Grid extends Component {
           className="box-wrapper"
           onClick={this._handleAction(itemRow[0].value.index)}
         >
-          <div className="image-wrapper" style={{ background: `url(${imageVal})`, backgroundSize: '150px 100px' }} />
+          <div className="image-wrapper" style={{ background: `url(${imageVal})` }} />
           <div className="block" ><div className="action-wrapper">{actionTemp}</div></div>
           {field1}
           {field2}
