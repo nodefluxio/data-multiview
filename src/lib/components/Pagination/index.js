@@ -17,13 +17,13 @@ export default class Pagination extends Component {
       config: props.config,
       data: props.data,
       currentPage: 1,
-      dataPerPage: 10,
+      dataPerPage: props.dataPerPage,
       enableActionBlock: props.enableActionBlock
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    let { config, data, type } = this.state;
+    let { config, data, type, dataPerPage } = this.state;
     if (nextProps.type !== type) {
       this.setState({ type: nextProps.type });
     }
@@ -32,6 +32,9 @@ export default class Pagination extends Component {
     }
     if (nextProps.data !== data) {
       this.setState({ data: nextProps.data, currentPage: 1 });
+    }
+    if (nextProps.dataPerPage !== dataPerPage) {
+      this.setState({ dataPerPage: nextProps.dataPerPage, currentPage: 1 });
     }
   }
 
@@ -73,9 +76,10 @@ export default class Pagination extends Component {
       }
       return null;
     })
-    const pageNumbers = pagination(currentPage, data.length);
+
+    const pageNumbers = pagination(currentPage, Math.ceil(data.length / dataPerPage));
     const renderPageNumbers = pageNumbers.map(number => {
-      let func = number === "..." ? null : this._clickPage(number);
+      let func = number === "..." ? null : this._clickPage(number); dataPerPage
       return (
         <a
           key={number}
@@ -167,7 +171,8 @@ export default class Pagination extends Component {
 }
 
 Pagination.defaultProps = {
-  enableActionBlock: true
+  enableActionBlock: true,
+  dataPerPage: 20
 };
 
 
@@ -182,11 +187,13 @@ function pagination(c, m) {
     rangeWithDots = [],
     l;
 
-  for (let i = 1; i <= last; i++) {
-    if (i == 1 || i == last || i >= left && i < right) {
+  range.push(1)
+  for (let i = c - delta; i <= c + delta; i++) {
+    if (i >= left && i < right && i < m && i > 1) {
       range.push(i);
     }
   }
+  range.push(m);
 
   for (let i of range) {
     if (l) {

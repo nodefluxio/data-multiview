@@ -231,7 +231,7 @@ export default class Grid extends Component {
           className="box-wrapper"
           onClick={this._handleAction(itemRow[0].value.index)}
         >
-          <div className="image-wrapper" style={{ background: `url(${imageVal})`, backgroundSize: '200px 150px' }} />
+          <div className="image-wrapper" style={{ background: `url(${imageVal})`, backgroundSize: '150px 100px' }} />
           <div className="block" ><div className="action-wrapper">{actionTemp}</div></div>
           {field1}
           {field2}
