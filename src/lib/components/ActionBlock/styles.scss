@@ -2,7 +2,7 @@
   display: flex;
   margin-left: 5px;
   margin-right: 5px;
-  z-index: 999999999999999999999999999999;
+  z-index: 99;
   & > .dialog-wrapper {
     position: fixed;
     height: 100vh;
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999999;
+    z-index: 100;
 
     &.active {
       display: flex;

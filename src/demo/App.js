@@ -14,7 +14,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <DataList type="grid" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}>
+        <DataList type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}>
           <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
           </ActionBlock>

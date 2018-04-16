@@ -29,10 +29,15 @@ export default class Pagination extends Component {
 
   componentWillMount() {
     let { config } = this.state;
-    config.push({
-      text: "Action"
-    });
-    this.setState({ config });
+    let findAction = config.find(item => {
+      return item.text === "Action";
+    })
+    if (!findAction) {
+      config.push({
+        text: "Action"
+      });
+      this.setState({ config });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
