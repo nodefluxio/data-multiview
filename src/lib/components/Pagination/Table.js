@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import noImage from '../../assets/images/no-image.png';
 
 const _styles = require("./styles.scss");
 
@@ -58,8 +59,8 @@ export default class Table extends Component {
         let value =
           itemColumn.type === "Action" ? (<div className="action-wrapper">{itemColumn.value.value}</div>) : itemColumn.value.text;
         let imageVal =
-          itemColumn.value.value === null || itemColumn.value.value === undefined
-            ? ''
+          itemColumn === null || itemColumn === undefined
+            ? noImage
             : itemColumn.value.value;
 
         let actionView = itemColumn.type === "Action" ? null : this._onAction(itemRow[0].value.index);

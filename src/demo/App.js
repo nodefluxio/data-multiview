@@ -14,16 +14,17 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <DataList type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}>
+        {/* <DataList type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}>
           <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
           </ActionBlock>
           <ActionBlock actionName="delete" confirmDialog={true} confirmTitle="Custom Title" confirmText="Custom Text" confirmButton="Custom button text">
             <i className="icon icon-delete" />
           </ActionBlock>
-        </DataList>
-        {/* <Pagination type="table" config={config} data={data} onAction={this._action} index="fullname" />
-        <Filter config={config} data={filterData} action={this._action} />
+        </DataList> */}
+         <Pagination type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}/>
+        
+         {/* <Filter config={config} data={filterData} action={this._action} />
         <ActionBlock key="1" actionName="edit" onAction={this._action} index="value">
           <i className="icon icon-pencil" />
         </ActionBlock> */}
@@ -31,7 +32,12 @@ export default class App extends React.Component {
     )
   }
 }
-
+/*List test case
+1. no image config
+2. multiple config type
+3. type contain image, string, json, date, datetime
+4. need more test case
+*/
 var config = [
   { text: 'Image', type: 'image', textPath: 'image', valuePath: 'image' },
   { text: 'Fullname', type: 'string', textPath: 'fullname', valuePath: 'fullname' },
