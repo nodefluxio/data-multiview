@@ -15,8 +15,11 @@ export default class App extends React.Component {
     return (
       <div>
         <DataList type="grid" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}>
-          <ActionBlock key="1" actionName="edit" onAction={this._action}>
+          <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
+          </ActionBlock>
+          <ActionBlock actionName="delete" confirmDialog={true} confirmTitle="Custom Title" confirmText="Custom Text" confirmButton="Custom button text">
+            <i className="icon icon-delete" />
           </ActionBlock>
         </DataList>
         {/* <Pagination type="table" config={config} data={data} onAction={this._action} index="fullname" />
@@ -43,6 +46,30 @@ var configDebug = [
     type: "image",
     textPath: "image",
     valuePath: "image"
+  },
+  {
+    text: "Rule Name",
+    type: "string",
+    textPath: "rule_detail/name",
+    valuePath: "rule_detail/name"
+  },
+  {
+    text: "Rule Name",
+    type: "string",
+    textPath: "rule_detail/name",
+    valuePath: "rule_detail/name"
+  },
+  {
+    text: "Rule Name",
+    type: "string",
+    textPath: "rule_detail/name",
+    valuePath: "rule_detail/name"
+  },
+  {
+    text: "Rule Name",
+    type: "string",
+    textPath: "rule_detail/name",
+    valuePath: "rule_detail/name"
   },
   {
     text: "Rule Name",

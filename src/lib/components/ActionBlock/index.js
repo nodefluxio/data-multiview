@@ -9,14 +9,23 @@ class ActionBlock extends React.Component {
     super(props);
     this.state = {
       index: props.index,
-      actionName: props.actionName
+      actionName: props.actionName,
+      confirmDialog: props.confirmDialog,
+      confirmTitle: props.confirmTitle,
+      confirmText: props.confirmText,
+      confirmButton: props.confirmButton,
     };
   }
 
   _onAction = (val) => {
     return event => {
-      let { index, actionName } = this.state;
-      this.props.onAction(actionName, index);
+      let { index, actionName, confirmDialog, confirmTitle, confirmText, confirmButton } = this.state;
+      let confirmDialogData = {
+        confirmTitle,
+        confirmText,
+        confirmButton
+      }
+      this.props.onAction(actionName, index, confirmDialog, confirmDialogData);
     };
   }
 

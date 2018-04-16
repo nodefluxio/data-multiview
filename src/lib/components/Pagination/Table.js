@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
 
 const _styles = require("./styles.scss");
 
@@ -12,17 +11,6 @@ export default class Table extends Component {
       data: props.data,
       indexPath: props.index
     };
-  }
-
-  componentWillMount() {
-    let { config } = this.state;
-    let { children } = this.props;
-    if (children) {
-      config.push({
-        text: "Action"
-      });
-    }
-    this.setState({ config });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,160 +35,26 @@ export default class Table extends Component {
     return <div className="head-wrapper">{listTableHeadRow}</div>;
   }
 
-  _handleAction = val => {
+  _onAction = val => {
     return event => {
-      this.props.action(val);
+      this.props.action('view', val);
     };
   };
 
   _renderRowBody() {
-    let { data, config, indexPath } = this.state;
-    let { children } = this.props;
-
-    let listRow = [];
-    data.map((itemData, indexRow) => {
-      let listColumn = [];
-      config.map((itemConfig, indexColumn) => {
-
-        let columnText = null;
-        let columnValue = null;
-        let indexValue = null;
-        if (itemConfig.text === "Action" && typeof children) {
-          columnText = "Action";
-          columnValue = [];
-          //////////////////////////////
-          let tempItemRow = itemData;
-          let indexPathValue = indexPath.split("/");
-          let indexValue = null;
-          for (const x in indexPathValue) {
-            if (
-              tempItemRow[indexPathValue[x]] !== null &&
-              tempItemRow[indexPathValue[x]] !== undefined
-            ) {
-              let temp_data = tempItemRow[indexPathValue[x]];
-              indexValue = temp_data;
-            }
-          }
-          //////////////////////////////
-          let tempActions = [];
-          if (children.length > 0) {
-            children.map((item, itemChildren) => {
-              item = React.cloneElement(item, {
-                index: indexValue,
-                key: itemChildren
-              });
-              tempActions.push(item);
-              return null;
-            });
-
-          } else {
-            tempActions = React.cloneElement(children, {
-              index: indexValue
-            });
-          }
-          columnValue = <div className="action-wrapper">{tempActions}</div>;
-        } else {
-          //region Get column Text
-          let tempItemRow = itemData;
-          let textPath = itemConfig.textPath.split("/");
-          for (const x in textPath) {
-            if (
-              tempItemRow[textPath[x]] !== null &&
-              tempItemRow[textPath[x]] !== undefined
-            ) {
-              let temp_data = tempItemRow[textPath[x]];
-              tempItemRow = temp_data;
-              columnText = temp_data;
-            }
-          }
-          //endregion
-
-          //region Get column Value
-          tempItemRow = itemData;
-          let valuePath = itemConfig.valuePath.split("/");
-          for (const x in valuePath) {
-            if (
-              tempItemRow[valuePath[x]] !== null &&
-              tempItemRow[valuePath[x]] !== undefined
-            ) {
-              let temp_data = tempItemRow[valuePath[x]];
-              tempItemRow = temp_data;
-              columnValue = temp_data;
-            }
-          }
-          //endregion
-
-          tempItemRow = itemData;
-          let indexPathValue = indexPath.split("/");
-          for (const x in indexPathValue) {
-            if (
-              tempItemRow[indexPathValue[x]] !== null &&
-              tempItemRow[indexPathValue[x]] !== undefined
-            ) {
-              let temp_data = tempItemRow[indexPathValue[x]];
-              indexValue = temp_data;
-            }
-          }
-
-          if (itemConfig.type === "date") {
-            columnText = moment(columnText).format("DD MMM YYYY");
-            columnValue = moment(columnValue).format("DD MMM YYYY");
-          } else if (itemConfig.type === "json") {
-            columnText = JSON.stringify(columnText);
-            if (columnText === columnValue) {
-              columnValue = JSON.stringify(columnValue);
-            }
-          } else if (itemConfig.type === "datetime") {
-            columnText = moment(columnText).format("DD MMM YYYY, HH:mm");
-            columnValue = moment(columnValue).format("DD MMM YYYY, HH:mm");
-          }
-        }
-
-        listColumn.push({ text: columnText, value: columnValue, index: indexValue });
-        return null;
-      });
-      listRow.push(listColumn);
-      return null;
-    });
-    //endregion
-
-    //region parsing data with type for checking type
-    let listRowParsing = [];
-    listRow.map((itemRow, indexRow) => {
-      let row = [];
-      itemRow.map((data, indexData) => {
-        let temp = {};
-        config.map((itemConfig, indexConfig) => {
-          if (indexConfig === indexData) {
-            if (itemConfig.text === 'Action') {
-              temp.type = 'Action';
-              temp.value = data;
-            } else {
-              temp.type = itemConfig.type;
-              temp.value = data;
-            }
-          }
-          return null;
-        });
-        row.push(temp);
-        return null;
-      });
-      listRowParsing.push(row);
-      return null;
-    });
-    //endregion
+    let { data } = this.state;
 
     //region Render Row and Column
-    let rows = listRowParsing.map((itemRow, indexRow) => {
+    let rows = data.map((itemRow, indexRow) => {
       let columns = itemRow.map((itemColumn, indexColumn) => {
         let value =
-          itemColumn.type === "Action" ? itemColumn.value.value : itemColumn.value.text;
+          itemColumn.type === "Action" ? (<div className="action-wrapper">{itemColumn.value.value}</div>) : itemColumn.value.text;
         let imageVal =
           itemColumn.value.value === null || itemColumn.value.value === undefined
             ? ''
             : itemColumn.value.value;
 
-        let actionView = itemColumn.type === "Action" ? null : this._handleAction(itemRow[0].value.index);
+        let actionView = itemColumn.type === "Action" ? null : this._onAction(itemRow[0].value.index);
         return (
           <div onClick={actionView} key={indexColumn} className="column-wrapper">
             {itemColumn.type !== "image" ? value : <div className="image" style={{ background: `url(${imageVal})` }} />}

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import moment from "moment";
 // import PropTypes from "prop-types";
 
 import Table from "./Table";
 import Grid from "./Grid";
 import ActionBlock from "../ActionBlock";
+import ConfirmDialog from './ConfirmDialog';
 
 import _styles from './styles.scss';
 
@@ -18,8 +20,19 @@ export default class Pagination extends Component {
       data: props.data,
       currentPage: 1,
       dataPerPage: props.dataPerPage,
-      enableActionBlock: props.enableActionBlock
+      enableActionBlock: props.enableActionBlock,
+      confirmDialogIndex: null,
+      confirmDialogActionName: null,
+      confirmDialogData: null
     };
+  }
+
+  componentWillMount() {
+    let { config } = this.state;
+    config.push({
+      text: "Action"
+    });
+    this.setState({ config });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,11 +51,23 @@ export default class Pagination extends Component {
     }
   }
 
-  _action = (actionName, indexData) => {
-    this.props.onAction(actionName, indexData);
+  action = (actionName, indexData, confirmDialog, confirmDialogData) => {
+    if (confirmDialog) {
+      this.setState({ confirmDialogIndex: indexData, confirmDialogActionName: actionName, confirmDialogData });
+    } else {
+      this.props.onAction(actionName, indexData);
+    }
   }
 
-  _clickPage = (val) => {
+  actionConfirmDialog = (condition, actionName, indexData) => {
+    if (condition) {
+      this.props.onAction(actionName, indexData);
+    } else {
+      this.setState({ confirmDialogIndex: null, confirmDialogActionName: null, confirmDialogData: null })
+    }
+  }
+
+  clickPage = (val) => {
     return event => {
       let { currentPage, data, dataPerPage } = this.state;
       let min = 1;
@@ -58,11 +83,7 @@ export default class Pagination extends Component {
     }
   }
 
-  _actionView = (indexData) => {
-    this.props.onAction('view', indexData);
-  }
-
-  _renderViewType() {
+  renderViewType() {
     let { index, type, config, data, currentPage, dataPerPage, enableActionBlock } = this.state;
 
     const indexOfLastData = currentPage * dataPerPage;
@@ -71,7 +92,7 @@ export default class Pagination extends Component {
 
     const pageNumbers = pagination(currentPage, Math.ceil(data.length / dataPerPage));
     const renderPageNumbers = pageNumbers.map(number => {
-      let func = number === "..." ? null : this._clickPage(number);
+      let func = number === "..." ? null : this.clickPage(number);
       return (
         <a
           key={number}
@@ -84,19 +105,13 @@ export default class Pagination extends Component {
     });
 
     renderPageNumbers.unshift(
-      <a
-        key={pageNumbers - 1}
-        onClick={this._clickPage('prev')}
-      >
+      <a key={pageNumbers - 1} onClick={this.clickPage('prev')} >
         {'<'}
       </a>
     )
 
     renderPageNumbers.push(
-      <a
-        key={pageNumbers + 1}
-        onClick={this._clickPage('next')}
-      >
+      <a key={pageNumbers + 1} onClick={this.clickPage('next')} >
         >
       </a>
     )
@@ -104,24 +119,26 @@ export default class Pagination extends Component {
     let actionBlock = null;
     if (enableActionBlock && !this.props.children) {
       actionBlock = [
-        (<ActionBlock key="1" actionName="edit" onAction={this._action}>
+        (<ActionBlock key="1" actionName="edit" onAction={this.action}>
           <i className="icon icon-pencil" />
         </ActionBlock>),
-        (<ActionBlock key="2" actionName="delete" onAction={this._action}>
+        (<ActionBlock key="2" actionName="delete" onAction={this.action} confirmDialog={true}>
           <i className="icon icon-delete" />
         </ActionBlock>)
       ]
     } else if (enableActionBlock && this.props.children) {
       actionBlock = this.props.children;
     }
+
+    let newFormatData = parsingData(currentData, config, index, actionBlock, this.action);
     switch (type) {
       case "grid":
         return [
           <Grid
             key="1"
             config={config}
-            data={currentData}
-            action={this._actionView}
+            data={newFormatData}
+            action={this.action}
             index={index}
           >
             {actionBlock}
@@ -138,8 +155,8 @@ export default class Pagination extends Component {
           <Table
             key="1"
             config={config}
-            data={currentData}
-            action={this._actionView}
+            data={newFormatData}
+            action={this.action}
             index={index}
           >
             {actionBlock}
@@ -154,10 +171,19 @@ export default class Pagination extends Component {
     }
   }
 
+  renderConfirmDialog() {
+    let { confirmDialogIndex, confirmDialogActionName, confirmDialogData } = this.state;
+    if (confirmDialogIndex == null && confirmDialogActionName == null) {
+      return null;
+    }
+    return <ConfirmDialog index={confirmDialogIndex} actionName={confirmDialogActionName} action={this.actionConfirmDialog} dialog={confirmDialogData} />;
+  }
+
   render() {
     return (
       <div className={_styles.pagination_wrapper}>
-        {this._renderViewType()}
+        {this.renderViewType()}
+        {this.renderConfirmDialog()}
       </div>
     )
   }
@@ -198,4 +224,139 @@ function pagination(currentPage, pageCount) {
     }
   }
   return result;
+}
+
+function parsingData(data, config, indexPath, children, action) {
+  let listRow = [];
+  data.map((itemData, indexRow) => {
+    let listColumn = [];
+    config.map((itemConfig, indexColumn) => {
+      let columnText = null;
+      let columnValue = null;
+      let indexValue = null;
+      if (itemConfig.text === "Action" && typeof children) {
+        columnText = "Action";
+        columnValue = [];
+        //////////////////////////////
+        let tempItemRow = itemData;
+        let indexPathValue = indexPath.split("/");
+        let indexValue = null;
+        for (const x in indexPathValue) {
+          if (
+            tempItemRow[indexPathValue[x]] !== null &&
+            tempItemRow[indexPathValue[x]] !== undefined
+          ) {
+            let temp_data = tempItemRow[indexPathValue[x]];
+            indexValue = temp_data;
+          }
+        }
+        //////////////////////////////
+        let tempActions = [];
+        if (children.length > 0) {
+          children.map((item, itemChildren) => {
+            item = React.cloneElement(item, {
+              index: indexValue,
+              key: itemChildren,
+              onAction: action
+            });
+            tempActions.push(item);
+            return null;
+          });
+
+        } else {
+          tempActions = React.cloneElement(children, {
+            index: indexValue,
+            onAction: action
+          });
+        }
+        columnValue = tempActions;
+      } else {
+        //region Get column Text
+        let tempItemRow = itemData;
+        let textPath = itemConfig.textPath.split("/");
+        for (const x in textPath) {
+          if (
+            tempItemRow[textPath[x]] !== null &&
+            tempItemRow[textPath[x]] !== undefined
+          ) {
+            let temp_data = tempItemRow[textPath[x]];
+            tempItemRow = temp_data;
+            columnText = temp_data;
+          }
+        }
+        //endregion
+
+        //region Get column Value
+        tempItemRow = itemData;
+        let valuePath = itemConfig.valuePath.split("/");
+        for (const x in valuePath) {
+          if (
+            tempItemRow[valuePath[x]] !== null &&
+            tempItemRow[valuePath[x]] !== undefined
+          ) {
+            let temp_data = tempItemRow[valuePath[x]];
+            tempItemRow = temp_data;
+            columnValue = temp_data;
+          }
+        }
+        //endregion
+
+        tempItemRow = itemData;
+        let indexPathValue = indexPath.split("/");
+        for (const x in indexPathValue) {
+          if (
+            tempItemRow[indexPathValue[x]] !== null &&
+            tempItemRow[indexPathValue[x]] !== undefined
+          ) {
+            let temp_data = tempItemRow[indexPathValue[x]];
+            indexValue = temp_data;
+          }
+        }
+
+        if (itemConfig.type === "date") {
+          columnText = moment(columnText).format("DD MMM YYYY");
+          columnValue = moment(columnValue).format("DD MMM YYYY");
+        } else if (itemConfig.type === "json") {
+          columnText = JSON.stringify(columnText);
+          if (columnText === columnValue) {
+            columnValue = JSON.stringify(columnValue);
+          }
+        } else if (itemConfig.type === "datetime") {
+          columnText = moment(columnText).format("DD MMM YYYY, HH:mm");
+          columnValue = moment(columnValue).format("DD MMM YYYY, HH:mm");
+        }
+      }
+
+      listColumn.push({ text: columnText, value: columnValue, index: indexValue });
+      return null;
+    });
+    listRow.push(listColumn);
+    return null;
+  });
+
+  let listRowParsing = [];
+  listRow.map((itemRow, indexRow) => {
+    let row = [];
+    itemRow.map((data, indexData) => {
+      let temp = {};
+      config.map((itemConfig, indexConfig) => {
+        if (indexConfig === indexData) {
+          if (itemConfig.text === 'Action') {
+            temp.type = 'Action';
+            temp.value = data;
+          } else {
+            temp.type = itemConfig.type;
+            temp.value = data;
+          }
+        }
+        return null;
+      });
+      row.push(temp);
+      return null;
+    });
+    listRowParsing.push(row);
+    return null;
+  });
+
+  return listRowParsing;
 }
