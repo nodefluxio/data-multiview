@@ -134,7 +134,7 @@ export default class Pagination extends Component {
       actionBlock = this.props.children;
     }
 
-    let newFormatData = parsingData(currentData, config, index, actionBlock, this.action);
+    let newFormatData = parsingData(currentData, config, index, actionBlock, this.action, enableActionBlock);
     switch (type) {
       case "grid":
         return [
@@ -162,6 +162,7 @@ export default class Pagination extends Component {
             data={newFormatData}
             action={this.action}
             index={index}
+            enableActionBlock={enableActionBlock}
           >
             {actionBlock}
           </Table>,
@@ -230,7 +231,7 @@ function pagination(currentPage, pageCount) {
   return result;
 }
 
-function parsingData(data, config, indexPath, children, action) {
+function parsingData(data, config, indexPath, children, action, enableActionBlock) {
   let listRow = [];
   data.map((itemData, indexRow) => {
     let listColumn = [];
@@ -239,41 +240,44 @@ function parsingData(data, config, indexPath, children, action) {
       let columnValue = null;
       let indexValue = null;
       if (itemConfig.text === "Action" && typeof children) {
-        columnText = "Action";
-        columnValue = [];
-        //////////////////////////////
-        let tempItemRow = itemData;
-        let indexPathValue = indexPath.split("/");
-        let indexValue = null;
-        for (const x in indexPathValue) {
-          if (
-            tempItemRow[indexPathValue[x]] !== null &&
-            tempItemRow[indexPathValue[x]] !== undefined
-          ) {
-            let temp_data = tempItemRow[indexPathValue[x]];
-            indexValue = temp_data;
+        if (enableActionBlock) {
+          columnText = "Action";
+          columnValue = [];
+          //////////////////////////////
+          let tempItemRow = itemData;
+          let indexPathValue = indexPath.split("/");
+          let indexValue = null;
+          for (const x in indexPathValue) {
+            if (
+              tempItemRow[indexPathValue[x]] !== null &&
+              tempItemRow[indexPathValue[x]] !== undefined
+            ) {
+              let temp_data = tempItemRow[indexPathValue[x]];
+              indexValue = temp_data;
+            }
           }
-        }
-        //////////////////////////////
-        let tempActions = [];
-        if (children.length > 0) {
-          children.map((item, itemChildren) => {
-            item = React.cloneElement(item, {
+          //////////////////////////////
+          let tempActions = [];
+          if (children.length > 0) {
+            children.map((item, itemChildren) => {
+              item = React.cloneElement(item, {
+                index: indexValue,
+                key: itemChildren,
+                onAction: action
+              });
+              tempActions.push(item);
+              return null;
+            });
+
+          } else {
+            tempActions = React.cloneElement(children, {
               index: indexValue,
-              key: itemChildren,
               onAction: action
             });
-            tempActions.push(item);
-            return null;
-          });
-
-        } else {
-          tempActions = React.cloneElement(children, {
-            index: indexValue,
-            onAction: action
-          });
+          }
+          columnValue = tempActions;
         }
-        columnValue = tempActions;
+
       } else {
         //region Get column Text
         let tempItemRow = itemData;

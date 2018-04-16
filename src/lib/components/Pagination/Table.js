@@ -9,7 +9,8 @@ export default class Table extends Component {
     this.state = {
       config: props.config,
       data: props.data,
-      indexPath: props.index
+      indexPath: props.index,
+      enableActionBlock: props.enableActionBlock
     };
   }
 
@@ -27,9 +28,16 @@ export default class Table extends Component {
   }
 
   _renderRowTitle() {
-    let { config } = this.state;
+    let { config, enableActionBlock } = this.state;
     let listTableHeadRow = config.map((item, i) => {
-      return <div key={i}>{item.text}</div>;
+      if (item.text === "Action") {
+        if (enableActionBlock) {
+          return <div key={i}>{item.text}</div>;
+        }
+      } else {
+        return <div key={i}>{item.text}</div>;
+      }
+
     });
 
     return <div className="head-wrapper">{listTableHeadRow}</div>;
@@ -42,7 +50,7 @@ export default class Table extends Component {
   };
 
   _renderRowBody() {
-    let { data } = this.state;
+    let { data, enableActionBlock } = this.state;
 
     //region Render Row and Column
     let rows = data.map((itemRow, indexRow) => {
@@ -55,13 +63,20 @@ export default class Table extends Component {
             : itemColumn.value.value;
 
         let actionView = itemColumn.type === "Action" ? null : this._onAction(itemRow[0].value.index);
-        return (
-          <div onClick={actionView} key={indexColumn} className="column-wrapper">
-            {itemColumn.type !== "image" ? value : <div className="image" style={{ background: `url(${imageVal})` }} />}
-          </div>
-        );
+
+        if (itemColumn.type === "Action") {
+          if (enableActionBlock) {
+            return <div onClick={actionView} key={indexColumn} className="column-wrapper">{value}</div>;
+          }
+        } else {
+          return (
+            <div onClick={actionView} key={indexColumn} className="column-wrapper">
+              {itemColumn.type !== "image" ? value : <div className="image" style={{ background: `url(${imageVal})` }} />}
+            </div>
+          );
+        }
       });
-      let percColumn = 100 / columns.length;
+      let percColumn = 100 / (enableActionBlock ? columns.length : columns.length - 1);
       let customCls = '';
       for (let i = 0; i < columns.length; i++) {
         customCls += percColumn.toString() + '% ';
