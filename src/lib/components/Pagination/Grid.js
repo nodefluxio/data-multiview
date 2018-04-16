@@ -192,7 +192,6 @@ export default class Grid extends Component {
 
     //region Grid
     return listRowParsing.map((itemRow, indexRow) => {
-      console.log('AA', itemRow);
       let imageVar = itemRow.find(item => {
         if (item.type === "image") {
           return item;

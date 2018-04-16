@@ -81,7 +81,7 @@ export default class Filter extends Component {
             <input
               type="text"
               className="custom-search"
-              placeholder="Custom search"
+              placeholder="Search ......"
               value={this.state.resultSearch}
               onChange={this._handleSearch}
             />
