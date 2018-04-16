@@ -329,7 +329,9 @@ export default class DataList extends Component {
     let { index, type, config, dataFilter, enableActionBlock, dataPerPage } = this.state;
 
     return (
-      <Pagination type={type} config={config} data={dataFilter} onAction={this._action} index={index} enableActionBlock={enableActionBlock} dataPerPage={dataPerPage} />
+      <Pagination type={type} config={config} data={dataFilter} onAction={this._action} index={index} enableActionBlock={enableActionBlock} dataPerPage={dataPerPage} >
+        {this.props.children}
+      </Pagination>
     )
   }
 

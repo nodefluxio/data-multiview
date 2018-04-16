@@ -102,7 +102,7 @@ export default class Pagination extends Component {
     )
 
     let actionBlock = null;
-    if (enableActionBlock) {
+    if (enableActionBlock && !this.props.children) {
       actionBlock = [
         (<ActionBlock key="1" actionName="edit" onAction={this._action}>
           <i className="icon icon-pencil" />
@@ -111,6 +111,8 @@ export default class Pagination extends Component {
           <i className="icon icon-delete" />
         </ActionBlock>)
       ]
+    } else if (enableActionBlock && this.props.children) {
+      actionBlock = this.props.children;
     }
     switch (type) {
       case "grid":
