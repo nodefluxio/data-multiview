@@ -67,9 +67,8 @@ export default class Pagination extends Component {
   actionConfirmDialog = (condition, actionName, indexData) => {
     if (condition) {
       this.props.onAction(actionName, indexData);
-    } else {
-      this.setState({ confirmDialogIndex: null, confirmDialogActionName: null, confirmDialogData: null })
     }
+    this.setState({ confirmDialogIndex: null, confirmDialogActionName: null, confirmDialogData: null })
   }
 
   clickPage = (val) => {
