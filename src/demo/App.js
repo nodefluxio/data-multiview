@@ -2,6 +2,8 @@ import React from 'react';
 import DataList, { Filter, Pagination, ActionBlock } from '../lib';
 
 let img = 'https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg';
+
+let imgQuoteError = `http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg`;
 export default class App extends React.Component {
 
   _action = (actionName, indexData) => {
@@ -11,8 +13,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <DataList type="grid" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={false} dataPerPage={10}>
-          
+        <DataList type="grid" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}>
+          <ActionBlock key="1" actionName="edit" onAction={this._action}>
+            <i className="icon icon-pencil" />
+          </ActionBlock>
         </DataList>
         {/* <Pagination type="table" config={config} data={data} onAction={this._action} index="fullname" />
         <Filter config={config} data={filterData} action={this._action} />
@@ -40,34 +44,15 @@ var configDebug = [
     valuePath: "image"
   },
   {
-    text: "Assigment ID",
-    type: "string",
-    textPath: "id",
-    valuePath: "id"
-  },
-  { text: "Date", type: "datetime", textPath: "created_at", valuePath: "id" },
-  {
-    text: "Feature",
+    text: "Rule Name",
     type: "string",
     textPath: "rule_detail/name",
-    valuePath: "rule_detail/id"
+    valuePath: "rule_detail/name"
   },
-  {
-    text: "Camera Name",
-    type: "string",
-    textPath: "cam_detail/name",
-    valuePath: "cam_detail/id"
-  },
-  {
-    text: "Vas Name",
-    type: "string",
-    textPath: "vas_detail/name",
-    valuePath: "vas_detail/id"
-  }
 ]
 
 var dataDebug = [
-  { id: 305, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1, name: 'Face Recognition' }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: img },
+  { id: 305, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1, name: 'Face Recognition' }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imgQuoteError },
   { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: img },
   { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: img }
 ]

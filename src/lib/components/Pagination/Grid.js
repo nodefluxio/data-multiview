@@ -192,6 +192,7 @@ export default class Grid extends Component {
 
     //region Grid
     return listRowParsing.map((itemRow, indexRow) => {
+      console.log('AA', itemRow);
       let imageVar = itemRow.find(item => {
         if (item.type === "image") {
           return item;
@@ -203,24 +204,13 @@ export default class Grid extends Component {
           ? image
           : imageVar.value.value;
 
-      let field1 =
-        itemRow[1] !== undefined ? (
-          <div className="title margin">{itemRow[1].value.text}</div>
-        ) : (
-            ""
-          );
-      let field2 =
-        itemRow[2] !== undefined ? (
-          <div className="desc margin">{itemRow[2].value.text}</div>
-        ) : (
-            ""
-          );
-      let field3 =
-        itemRow[3] !== undefined ? (
-          <div className="sub-desc margin">{itemRow[3].value.text}</div>
-        ) : (
-            ""
-          );
+      let listField = itemRow.filter(item => {
+        return item.type !== "Action" && item.type !== "image"
+      })
+
+      let listFieldHtml = listField.map((item, index) => {
+        return <div key={index} className="desc margin">{item.value.text}</div>
+      })
       let actionTemp = itemRow.find(item => {
         return item.type === 'Action';
       })
@@ -232,9 +222,7 @@ export default class Grid extends Component {
         >
           <div onClick={this._handleAction(itemRow[0].value.index)} className="image-wrapper" style={{ background: `url(${imageVal})` }} />
           <div className="block" ><div className="action-wrapper">{actionTemp}</div></div>
-          {field1}
-          {field2}
-          {field3}
+          {listFieldHtml}
         </div>
       );
     });
