@@ -89,6 +89,7 @@
 
       &:hover {
         background-color: #1f1f76;
+        cursor: pointer;
       }
 
       & > .column-wrapper {
@@ -157,7 +158,10 @@
     color: #d8d8d8;
 
     &:hover {
-      background-color: #1f1f76;
+      & .image-wrapper{
+        background-color: #1f1f76;
+        cursor: pointer;
+      }
     }
 
     &:hover .image-wrapper {
@@ -187,9 +191,9 @@
 
     & > .block {
       position: absolute;
-      height: 150px;
-      width: 200px;
-      transform: translateY(-110%);
+      height: 30px;
+      width: 150px;
+      transform: translateY(-390%);
 
       & > .action-wrapper {
         display: inline-flex;

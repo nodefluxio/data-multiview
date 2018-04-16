@@ -200,9 +200,12 @@ export default class Table extends Component {
             ? ''
             : itemColumn.value.value;
 
-        return (<div key={indexColumn} className="column-wrapper">
-          {itemColumn.type != "image" ? value : <div className="image" style={{ background: `url(${imageVal})` }} />}
-        </div>);
+        let actionView = itemColumn.type === "Action" ? null : this._handleAction(itemRow[0].value.index);
+        return (
+          <div onClick={actionView} key={indexColumn} className="column-wrapper">
+            {itemColumn.type !== "image" ? value : <div className="image" style={{ background: `url(${imageVal})` }} />}
+          </div>
+        );
       });
       let percColumn = 100 / columns.length;
       let customCls = '';
@@ -210,7 +213,7 @@ export default class Table extends Component {
         customCls += percColumn.toString() + '% ';
       }
       return (
-        <div key={indexRow} onClick={this._handleAction(itemRow[0].value.index)} className="row-wrapper" style={{ gridTemplateColumns: customCls }}>
+        <div key={indexRow} className="row-wrapper" style={{ gridTemplateColumns: customCls }}>
           {columns}
         </div>
       );

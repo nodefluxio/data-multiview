@@ -21,9 +21,8 @@ class ActionBlock extends React.Component {
   }
 
   render() {
-    let func = this._onAction(true);
     return (
-      <div onClick={func} className={_styles.action_block_wrapper + ' action-block'}>
+      <div onClick={this._onAction()} className={_styles.action_block_wrapper + ' action-block'}>
         {this.props.children}
       </div >
     );

@@ -69,17 +69,9 @@ export default class Pagination extends Component {
     const indexOfFirstData = indexOfLastData - dataPerPage;
     const currentData = data.slice(indexOfFirstData, indexOfLastData);
 
-    let count = 0;
-    data.map((itemData, index) => {
-      if (itemData !== null) {
-        count++;
-      }
-      return null;
-    })
-
     const pageNumbers = pagination(currentPage, Math.ceil(data.length / dataPerPage));
     const renderPageNumbers = pageNumbers.map(number => {
-      let func = number === "..." ? null : this._clickPage(number); dataPerPage
+      let func = number === "..." ? null : this._clickPage(number);
       return (
         <a
           key={number}
@@ -120,7 +112,6 @@ export default class Pagination extends Component {
         </ActionBlock>)
       ]
     }
-
     switch (type) {
       case "grid":
         return [
@@ -176,36 +167,33 @@ Pagination.defaultProps = {
 };
 
 
-//pagination algorithm https://gist.github.com/kottenator/9d936eb3e4e3c3e02598
-function pagination(c, m) {
-  var current = c,
-    last = m,
-    delta = 2,
-    left = current - delta,
-    right = current + delta + 1,
-    range = [],
-    rangeWithDots = [],
-    l;
+//pagination algorithm https://gist.github.com/kottenator/9d936eb3e4e3c3e02598 
+//danilopolani
+function pagination(currentPage, pageCount) {
+  let delta = 2,
+    left = currentPage - delta,
+    right = currentPage + delta + 1,
+    result = [];
 
-  range.push(1)
-  for (let i = c - delta; i <= c + delta; i++) {
-    if (i >= left && i < right && i < m && i > 1) {
-      range.push(i);
-    }
-  }
-  range.push(m);
+  result = Array.from({ length: pageCount }, (v, k) => k + 1)
+    .filter(i => i && i >= left && i < right);
 
-  for (let i of range) {
-    if (l) {
-      if (i - l === 2) {
-        rangeWithDots.push(l + 1);
-      } else if (i - l !== 1) {
-        rangeWithDots.push('...');
+  if (result.length > 1) {
+    // Add first page and dots
+    if (result[0] > 1) {
+      if (result[0] > 2) {
+        result.unshift('...')
       }
+      result.unshift(1)
     }
-    rangeWithDots.push(i);
-    l = i;
-  }
 
-  return rangeWithDots;
+    // Add dots and last page
+    if (result[result.length - 1] < pageCount) {
+      if (result[result.length - 1] !== pageCount - 1) {
+        result.push('...')
+      }
+      result.push(pageCount)
+    }
+  }
+  return result;
 }
