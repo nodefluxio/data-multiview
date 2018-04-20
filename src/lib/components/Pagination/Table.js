@@ -38,7 +38,7 @@ export default class Table extends Component {
       } else {
         return <div key={i}>{item.text}</div>;
       }
-
+      return null;
     });
 
     return <div className="head-wrapper">{listTableHeadRow}</div>;
@@ -70,12 +70,17 @@ export default class Table extends Component {
             return <div onClick={actionView} key={indexColumn} className="column-wrapper">{value}</div>;
           }
         } else {
+          let customStyle = {};
+          if(itemColumn.textColor !== undefined && itemColumn.textColor !== null){
+            customStyle.color = itemColumn.textColor;
+          }
           return (
-            <div onClick={actionView} key={indexColumn} className="column-wrapper">
+            <div onClick={actionView} key={indexColumn} className="column-wrapper" style={customStyle}>
               {itemColumn.type !== "image" ? value : <div className="image" style={{ background: `url(${imageVal})` }} />}
             </div>
           );
         }
+        return null;
       });
       let percColumn = 100 / (enableActionBlock ? columns.length : columns.length - 1);
       let customCls = '';

@@ -16,8 +16,7 @@ export default class DataList extends Component {
       config: props.config,
       data: props.data,
       dataFilter: props.data,
-      enableActionBlock: props.enableActionBlock,
-      dataPerPage: props.dataPerPage
+      enableActionBlock: props.enableActionBlock
     };
   }
 
@@ -326,10 +325,10 @@ export default class DataList extends Component {
   };
 
   _renderViewType() {
-    let { index, type, config, dataFilter, enableActionBlock, dataPerPage } = this.state;
+    let { index, type, config, dataFilter, enableActionBlock } = this.state;
 
     return (
-      <Pagination type={type} config={config} data={dataFilter} onAction={this._action} index={index} enableActionBlock={enableActionBlock} dataPerPage={dataPerPage} >
+      <Pagination type={type} config={config} data={dataFilter} onAction={this._action} index={index} enableActionBlock={enableActionBlock} >
         {this.props.children}
       </Pagination>
     )
@@ -353,6 +352,5 @@ DataList.propTypes = {
 };
 
 DataList.defaultProps = {
-  enableActionBlock: true,
-  dataPerPage: 20
+  enableActionBlock: true
 };

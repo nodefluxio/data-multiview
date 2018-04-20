@@ -6,10 +6,17 @@
   overflow-y: auto;
   flex-direction: column;
 
-  .pagination {
-    text-align: right;
+  & > .pagination-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
-    .pagination-numbers {
+    & > .data-page{
+      margin-left: 10px;
+    }
+
+    & > .page-number {
       display: inline-block;
 
       span {

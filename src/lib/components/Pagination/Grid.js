@@ -55,7 +55,11 @@ export default class Grid extends Component {
       })
 
       let listFieldHtml = listField.map((item, index) => {
-        return <div key={index} className="desc margin">{item.value.text}</div>
+        let customStyle = {};
+        if (item.textColor !== undefined && item.textColor !== null) {
+          customStyle.color = item.textColor;
+        }
+        return <div key={index} className="desc margin" style={customStyle}>{item.value.text}</div>
       })
       let actionTemp = itemRow.find(item => {
         return item.type === 'Action';

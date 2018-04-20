@@ -19,7 +19,7 @@ export default class Pagination extends Component {
       config: props.config,
       data: props.data,
       currentPage: 1,
-      dataPerPage: props.dataPerPage,
+      dataPerPage: 20,
       enableActionBlock: props.enableActionBlock,
       confirmDialogIndex: null,
       confirmDialogActionName: null,
@@ -41,7 +41,7 @@ export default class Pagination extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let { config, data, type, dataPerPage } = this.state;
+    let { config, data, type } = this.state;
     if (nextProps.type !== type) {
       this.setState({ type: nextProps.type });
     }
@@ -50,9 +50,6 @@ export default class Pagination extends Component {
     }
     if (nextProps.data !== data) {
       this.setState({ data: nextProps.data, currentPage: 1 });
-    }
-    if (nextProps.dataPerPage !== dataPerPage) {
-      this.setState({ dataPerPage: nextProps.dataPerPage, currentPage: 1 });
     }
   }
 
@@ -134,6 +131,20 @@ export default class Pagination extends Component {
       actionBlock = this.props.children;
     }
 
+    let option = [
+      { text: "20", value: 20 },
+      { text: "50", value: 50 },
+      { text: "100", value: 100 }
+    ];
+
+    let htmlDataPerPage = option.map((item, index) => {
+      return (
+        <option key={index} value={item.value}>
+          {item.text}
+        </option>
+      );
+    });
+
     let newFormatData = parsingData(currentData, config, index, actionBlock, this.action, enableActionBlock);
     switch (type) {
       case "grid":
@@ -147,11 +158,13 @@ export default class Pagination extends Component {
           >
             {actionBlock}
           </Grid>,
-          <div key="2" className="pagination">
-            <div className="pagination-numbers">
-              <span>Page</span>
-              {renderPageNumbers}
+          <div key="2" className="pagination-wrapper">
+            <div className="data-page">
+              <select value={dataPerPage} onChange={this.changeDataPerPage()}>
+                {htmlDataPerPage}
+              </select>
             </div>
+            <div className="page-number"><span>Page</span>{renderPageNumbers}</div>
           </div>
         ];
       default:
@@ -166,15 +179,23 @@ export default class Pagination extends Component {
           >
             {actionBlock}
           </Table>,
-          <div key="2" className="pagination">
-            <div className="pagination-numbers">
-              <span>Page</span>
-              {renderPageNumbers}
+          <div key="2" className="pagination-wrapper">
+            <div className="data-page">
+              <select value={dataPerPage} onChange={this.changeDataPerPage()}>
+                {htmlDataPerPage}
+              </select>
             </div>
+            <div className="page-number"><span>Page</span>{renderPageNumbers}</div>
           </div>
         ];
     }
   }
+
+  changeDataPerPage = () => {
+    return event => {
+      this.setState({ dataPerPage: parseInt(event.target.value, 10) });
+    };
+  };
 
   renderConfirmDialog() {
     let { confirmDialogIndex, confirmDialogActionName, confirmDialogData } = this.state;
@@ -354,6 +375,7 @@ function parsingData(data, config, indexPath, children, action, enableActionBloc
             temp.value = data;
           } else {
             temp.type = itemConfig.type;
+            temp.textColor = itemConfig.textColor
             temp.value = data;
           }
         }
