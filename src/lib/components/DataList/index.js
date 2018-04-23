@@ -52,8 +52,8 @@ export default class DataList extends Component {
       let listColumn = [];
       config.map(function (itemConfig, indexColumn) {
         if (itemConfig.text !== 'Action') {
-          let columnText;
-          let columnValue;
+          let columnText = null;
+          let columnValue = null;
 
           //region Get column Text
           let tempItemRow = itemData;
@@ -85,6 +85,11 @@ export default class DataList extends Component {
           }
           //endregion
 
+          if (typeof columnText === 'object' || typeof columnValue === 'object') {
+            columnText = '';
+            columnValue = '';
+          }
+
           if (itemConfig.type === "date") {
             columnText = moment(columnText).format("DD MMM YYYY");
             columnValue = moment(columnValue).format("DD MMM YYYY");
@@ -99,7 +104,6 @@ export default class DataList extends Component {
           } else {
             columnValue = columnValue.toString();
           }
-
           listColumn.push({ text: columnText, value: columnValue });
         }
 
