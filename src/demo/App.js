@@ -107,12 +107,18 @@ var configDebugSmall = [
     textPath: "cam_detail/name",
     valuePath: "cam_detail/name"
   },
+  {
+    text: "Third value",
+    type: "string",
+    textPath: "image",
+    valuePath: "image"
+  },
 ]
 
 var dataDebugSmall = [
   { id: 305, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1 }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: img },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: img },
+  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: '' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: null }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: null },
   { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
 ]
 

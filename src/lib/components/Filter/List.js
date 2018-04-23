@@ -26,7 +26,12 @@ export default class List extends Component {
   _renderChild() {
     let { listChild } = this.state;
     let child = listChild.map((item, i) => {
-      if (item.text !== '' && item.value !== '')
+      if (
+        item.text !== '' &&
+        item.text != null &&
+        item.value !== '' &&
+        item.value !== null
+      )
         return (
           <option key={i} value={item.value}>
             {item.text}
