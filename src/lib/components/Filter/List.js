@@ -26,11 +26,12 @@ export default class List extends Component {
   _renderChild() {
     let { listChild } = this.state;
     let child = listChild.map((item, i) => {
-      return (
-        <option key={i} value={item.value}>
-          {item.text}
-        </option>
-      );
+      if (item.text !== '' && item.value !== '')
+        return (
+          <option key={i} value={item.value}>
+            {item.text}
+          </option>
+        );
     });
     child.unshift(
       <option key={listChild.length} value={"0"}>

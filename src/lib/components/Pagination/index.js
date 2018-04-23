@@ -257,9 +257,9 @@ function parsingData(data, config, indexPath, children, action, enableActionBloc
   data.map((itemData, indexRow) => {
     let listColumn = [];
     config.map((itemConfig, indexColumn) => {
-      let columnText = null;
-      let columnValue = null;
-      let indexValue = null;
+      let columnText;
+      let columnValue;
+      let indexValue;
       if (itemConfig.text === "Action" && typeof children) {
         if (enableActionBlock) {
           columnText = "Action";
@@ -267,7 +267,6 @@ function parsingData(data, config, indexPath, children, action, enableActionBloc
           //////////////////////////////
           let tempItemRow = itemData;
           let indexPathValue = indexPath.split("/");
-          let indexValue = null;
           for (const x in indexPathValue) {
             if (
               tempItemRow[indexPathValue[x]] !== null &&
@@ -342,6 +341,11 @@ function parsingData(data, config, indexPath, children, action, enableActionBloc
           }
         }
 
+        if (typeof columnText === 'object' || typeof columnValue === 'object') {
+          columnText = '';
+          columnValue = '';
+        }
+
         if (itemConfig.type === "date") {
           columnText = moment(columnText).format("DD MMM YYYY");
           columnValue = moment(columnValue).format("DD MMM YYYY");
@@ -387,6 +391,5 @@ function parsingData(data, config, indexPath, children, action, enableActionBloc
     listRowParsing.push(row);
     return null;
   });
-
   return listRowParsing;
 }

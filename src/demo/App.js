@@ -15,7 +15,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <DataList type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true}>
+        <DataList type="grid" config={configDebugSmall} data={dataDebugSmall} onAction={this._action} index="id" enableActionBlock={true}>
           <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
           </ActionBlock>
@@ -23,9 +23,9 @@ export default class App extends React.Component {
             <i className="icon icon-delete" />
           </ActionBlock>
         </DataList>
-         {/* <Pagination type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}/> */}
-        
-         {/* <Filter config={config} data={filterData} action={this._action} />
+        {/* <Pagination type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} dataPerPage={10}/> */}
+
+        {/* <Filter config={config} data={filterData} action={this._action} />
         <ActionBlock key="1" actionName="edit" onAction={this._action} index="value">
           <i className="icon icon-pencil" />
         </ActionBlock> */}
@@ -35,7 +35,7 @@ export default class App extends React.Component {
 }
 /*List test case
 1. no image config
-2. multiple config type
+2. multiple config type, example like textColor
 3. type contain image, string, json, date, datetime
 4. need more test case
 */
@@ -85,6 +85,35 @@ var configDebug = [
     textPath: "rule_detail/name",
     valuePath: "rule_detail/name"
   },
+]
+
+var configDebugSmall = [
+  {
+    text: "Image",
+    type: "image",
+    textPath: "image",
+    valuePath: "image"
+  },
+  {
+    text: "Rule Name",
+    type: "string",
+    textPath: "rule_detail/name",
+    valuePath: "rule_detail/name",
+    textColor: 'red'
+  },
+  {
+    text: "Camera Name",
+    type: "string",
+    textPath: "cam_detail/name",
+    valuePath: "cam_detail/name"
+  },
+]
+
+var dataDebugSmall = [
+  { id: 305, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1 }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imageStream },
+  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: img },
+  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: img },
+  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
 ]
 
 var dataDebug = [

@@ -52,8 +52,8 @@ export default class DataList extends Component {
       let listColumn = [];
       config.map(function (itemConfig, indexColumn) {
         if (itemConfig.text !== 'Action') {
-          let columnText = null;
-          let columnValue = null;
+          let columnText;
+          let columnValue;
 
           //region Get column Text
           let tempItemRow = itemData;
@@ -202,25 +202,8 @@ export default class DataList extends Component {
         }
         return null;
       });
-
-
-
-      // data.map((item, index) => {
-      //   let pass = false;
-      //   listPassFilter.map(itemFilter => {
-      //     if (parseInt(itemFilter, 10) === index) {
-      //       pass = true;
-      //     }
-      //     return null;
-      //   });
-      //   if (pass) {
-      //     temp[index] = item;
-      //   }
-      //   return null;
-      // })
     }
     this.setState({ dataFilter: data })
-    // this.setState({ dataFilter: temp })
     //endregion
   };
 
@@ -242,9 +225,8 @@ export default class DataList extends Component {
           if (itemConfig.textPath === undefined) {
             return null;
           }
-
-          let text = null;
-          let value = null;
+          let text;
+          let value;
 
           let tempItemRow = itemData;
           let textPath = itemConfig.textPath.split("/");
@@ -270,6 +252,11 @@ export default class DataList extends Component {
               tempItemRow = temp_data;
               value = temp_data;
             }
+          }
+
+          if (typeof text === 'object' || typeof value === 'object') {
+            text = '';
+            value = '';
           }
 
           if (itemConfig.type === "date") {
@@ -298,18 +285,13 @@ export default class DataList extends Component {
             });
 
             if (!exist)
-              listDistinctData[indexColumn].listValue.push({
-                text: text,
-                value
-              });
+              listDistinctData[indexColumn].listValue.push({ text, value });
           }
         }
-
         return null;
       });
       return null;
     });
-
     return (
       <Filter
         type={type}
