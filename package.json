@@ -11,7 +11,8 @@
   },
   "author": "Billy Sutomo <billysutomo.53@gmail.com>",
   "dependencies": {
-    "moment": "^2.21.0"
+    "moment": "^2.21.0",
+    "react-tooltip": "^3.5.0"
   },
   "devDependencies": {
     "autoprefixer": "7.1.6",

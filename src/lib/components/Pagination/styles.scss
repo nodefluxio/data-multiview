@@ -69,7 +69,6 @@
   & > .body-wrapper {
     height: 100%;
     flex: 1;
-    overflow-y: auto;
 
     &::-webkit-scrollbar-track {
       border-radius: 10px;
@@ -100,11 +99,13 @@
       }
 
       & > .column-wrapper {
-        align-content: center;
         display: grid;
         text-align: center;
         justify-content: center;
         line-height: 50px;
+        font-size: 13px;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         & > .image {
           height: 44px;
@@ -160,7 +161,7 @@
     position: relative;
     margin: 10px;
     max-height: 210px;
-    max-width: 200px;
+    max-width: 150px;
     margin-bottom: 30px;
     color: #d8d8d8;
 
@@ -237,14 +238,13 @@
       }
     }
 
-    & > .margin {
-      margin-left: 5px;
-      margin-right: 5px;
-      margin-bottom: 5px;
-    }
-
     & > .desc {
       font-size: 13px;
+      width: 150px;
+      height: 20px;
+      line-height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

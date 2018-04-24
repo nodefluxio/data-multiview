@@ -6,7 +6,8 @@ import Table from "./Table";
 import Grid from "./Grid";
 import ActionBlock from "../ActionBlock";
 import ConfirmDialog from './ConfirmDialog';
-
+import ReactTooltip from 'react-tooltip'
+import { debounce } from '../../utils';
 import _styles from './styles.scss';
 
 export default class Pagination extends Component {
@@ -23,8 +24,11 @@ export default class Pagination extends Component {
       enableActionBlock: props.enableActionBlock,
       confirmDialogIndex: null,
       confirmDialogActionName: null,
-      confirmDialogData: null
+      confirmDialogData: null,
+      width: 0
     };
+
+    this.handleWindowResize = debounce(this.handleWindowResize.bind(this), 100);
   }
 
   componentWillMount() {
@@ -51,6 +55,19 @@ export default class Pagination extends Component {
     if (nextProps.data !== data) {
       this.setState({ data: nextProps.data, currentPage: 1 });
     }
+  }
+
+  componentDidMount() {
+    this.setState({ width: this.refs.pagination_wrapper.clientWidth })
+    window.addEventListener('resize', this.handleWindowResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowResize);
+  }
+
+  handleWindowResize = () => {
+    this.setState({ width: this.refs.pagination_wrapper.clientWidth })
   }
 
   action = (actionName, indexData, confirmDialog, confirmDialogData) => {
@@ -85,7 +102,7 @@ export default class Pagination extends Component {
   }
 
   renderViewType() {
-    let { index, type, config, data, currentPage, dataPerPage, enableActionBlock } = this.state;
+    let { index, type, config, data, currentPage, dataPerPage, enableActionBlock, width } = this.state;
 
     const indexOfLastData = currentPage * dataPerPage;
     const indexOfFirstData = indexOfLastData - dataPerPage;
@@ -155,6 +172,7 @@ export default class Pagination extends Component {
             data={newFormatData}
             action={this.action}
             index={index}
+            width={width}
           >
             {actionBlock}
           </Grid>,
@@ -176,6 +194,7 @@ export default class Pagination extends Component {
             action={this.action}
             index={index}
             enableActionBlock={enableActionBlock}
+            width={width}
           >
             {actionBlock}
           </Table>,
@@ -207,7 +226,8 @@ export default class Pagination extends Component {
 
   render() {
     return (
-      <div className={_styles.pagination_wrapper}>
+      <div ref="pagination_wrapper" className={_styles.pagination_wrapper}>
+        <ReactTooltip />
         {this.renderViewType()}
         {this.renderConfirmDialog()}
       </div>

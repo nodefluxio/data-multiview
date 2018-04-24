@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import noImage from '../../assets/images/no-image.png';
+import { getTextWidth } from '../../utils';
 
 const _styles = require("./styles.scss");
 
@@ -37,7 +38,6 @@ export default class Grid extends Component {
   _renderRowBody() {
     let { data } = this.state;
 
-    //region Grid
     return data.map((itemRow, indexRow) => {
       let imageVar = itemRow.find(item => {
         if (item.type === "image") {
@@ -56,10 +56,18 @@ export default class Grid extends Component {
 
       let listFieldHtml = listField.map((item, index) => {
         let customStyle = {};
+        // customStyle.zIndex = index;
         if (item.textColor !== undefined && item.textColor !== null) {
           customStyle.color = item.textColor;
         }
-        return <div key={index} className="desc margin" style={customStyle}>{item.value.text}</div>
+
+        let length = getTextWidth(item.value.text, 13);
+        let dataTip = length > 150 ? item.value.text.toString() : '';
+        return (
+          <div key={index} className="desc" style={customStyle} data-tip={dataTip}>
+            {item.value.text}
+          </div>
+        )
       })
       let actionTemp = itemRow.find(item => {
         return item.type === 'Action';
@@ -76,11 +84,14 @@ export default class Grid extends Component {
         </div>
       );
     });
-    //endregion
   }
 
   render() {
-    return <div className={_styles.grid_wrapper}>{this._renderRowBody()}</div>;
+    return (
+      <div className={_styles.grid_wrapper}>
+        {this._renderRowBody()}
+      </div>
+    )
   }
 }
 

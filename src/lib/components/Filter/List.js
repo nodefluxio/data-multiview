@@ -37,6 +37,7 @@ export default class List extends Component {
             {item.text}
           </option>
         );
+      return null;
     });
     child.unshift(
       <option key={listChild.length} value={"0"}>
