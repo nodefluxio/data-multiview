@@ -6,7 +6,7 @@ import Filter from "../Filter";
 import Pagination from '../Pagination';
 
 import _styles from "./styles.scss";
-require('../../assets/styles.css');
+require('../../assets/style.css');
 export default class DataList extends Component {
   constructor(props) {
     super(props);
