@@ -57,7 +57,11 @@ export default class Table extends Component {
 
   _renderRowBody() {
     let { data, enableActionBlock, width } = this.state;
+    if (data.length === 0) {
+      return null;
+    }
     let widthColumn = 0;
+    let columnLength = enableActionBlock ? data[0].length : data[0].length - 1;
     //region Render Row and Column
     let rows = data.map((itemRow, indexRow) => {
       let columns = itemRow.map((itemColumn, indexColumn) => {
@@ -71,7 +75,7 @@ export default class Table extends Component {
         let actionView = itemColumn.type === "Action" ? null : this._onAction(itemRow[0].value.index);
         let customStyle = {};
         if (width !== 0) {
-          widthColumn = width / itemRow.length;
+          widthColumn = width / columnLength;
         }
         // customStyle.width = widthColumn;
         if (itemColumn.type === "Action") {
@@ -105,14 +109,15 @@ export default class Table extends Component {
         }
         return null;
       });
-      let percColumn = 100 / (enableActionBlock ? columns.length : columns.length - 1);
+
+      let percColumn = 100 / columnLength;
       let customCls = '';
       if (widthColumn !== 0) {
-        for (let i = 0; i < columns.length; i++) {
+        for (let i = 0; i < columnLength; i++) {
           customCls += widthColumn.toString() + 'px ';
         }
       } else {
-        for (let i = 0; i < columns.length; i++) {
+        for (let i = 0; i < columnLength; i++) {
           customCls += percColumn.toString() + '% ';
         }
       }

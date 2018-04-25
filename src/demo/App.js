@@ -15,7 +15,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <DataList type="table" config={configDebugSmall} data={dataDebugSmall} onAction={this._action} index="id" enableActionBlock={true}>
+        <DataList type="table" config={configDebugSmall} data={dataDebugSmall} onAction={this._action} index="id" enableActionBlock={false}>
           <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
           </ActionBlock>
