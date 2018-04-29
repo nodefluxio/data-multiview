@@ -8,7 +8,7 @@ import ActionBlock from "../ActionBlock";
 import ConfirmDialog from './ConfirmDialog';
 import ReactTooltip from 'react-tooltip'
 import { debounce } from '../../utils';
-import _styles from './styles.scss';
+import styles from './styles.scss';
 
 export default class Pagination extends Component {
 
@@ -28,7 +28,7 @@ export default class Pagination extends Component {
       width: 0
     };
 
-    this.handleWindowResize = debounce(this.handleWindowResize.bind(this), 100);
+    this.handleWindowResize = debounce(this.handleWindowResize.bind(this), 100); //delay trigger resize event
   }
 
   componentWillMount() {
@@ -173,6 +173,7 @@ export default class Pagination extends Component {
             action={this.action}
             index={index}
             width={width}
+            rebuildTooltip={this.rebuildTooltip}
           >
             {actionBlock}
           </Grid>,
@@ -195,6 +196,7 @@ export default class Pagination extends Component {
             index={index}
             enableActionBlock={enableActionBlock}
             width={width}
+            rebuildTooltip={this.rebuildTooltip}
           >
             {actionBlock}
           </Table>,
@@ -224,9 +226,13 @@ export default class Pagination extends Component {
     return <ConfirmDialog index={confirmDialogIndex} actionName={confirmDialogActionName} action={this.actionConfirmDialog} dialog={confirmDialogData} />;
   }
 
+  rebuildTooltip = () => {
+    ReactTooltip.rebuild();
+  }
+
   render() {
     return (
-      <div ref="pagination_wrapper" className={_styles.pagination_wrapper}>
+      <div ref="pagination_wrapper" className={styles.pagination_wrapper}>
         <ReactTooltip />
         {this.renderViewType()}
         {this.renderConfirmDialog()}

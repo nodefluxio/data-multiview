@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import noImage from '../../assets/images/no-image.png';
 import { getTextWidth } from '../../utils';
+import ReactTooltip from 'react-tooltip'
 
-const _styles = require("./styles.scss");
+import styles from "./styles.scss";
 
 
 export default class Grid extends Component {
@@ -22,11 +23,17 @@ export default class Grid extends Component {
       this.setState({ config: nextProps.config });
     }
     if (nextProps.data !== data) {
-      this.setState({ data: nextProps.data });
+      this.setState({ data: nextProps.data }, () => {
+        this.props.rebuildTooltip();
+      });
     }
     if (nextProps.index !== indexPath) {
       this.setState({ indexPath: nextProps.index });
     }
+  }
+
+  componentDidMount() {
+    this.props.rebuildTooltip();
   }
 
   _onAction = val => {
@@ -37,7 +44,6 @@ export default class Grid extends Component {
 
   _renderRowBody() {
     let { data } = this.state;
-
     return data.map((itemRow, indexRow) => {
       let imageVar = itemRow.find(item => {
         if (item.type === "image") {
@@ -88,7 +94,7 @@ export default class Grid extends Component {
 
   render() {
     return (
-      <div className={_styles.grid_wrapper}>
+      <div className={styles.grid_wrapper}>
         {this._renderRowBody()}
       </div>
     )

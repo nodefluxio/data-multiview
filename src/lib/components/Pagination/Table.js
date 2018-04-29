@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { getTextWidth } from '../../utils';
 import noImage from '../../assets/images/no-image.png';
 
-const _styles = require("./styles.scss");
+import styles from "./styles.scss";
 
 export default class Table extends Component {
   constructor(props) {
@@ -23,7 +23,9 @@ export default class Table extends Component {
       this.setState({ config: nextProps.config });
     }
     if (nextProps.data !== data) {
-      this.setState({ data: nextProps.data });
+      this.setState({ data: nextProps.data }, () => {
+        this.props.rebuildTooltip();
+      });
     }
     if (nextProps.index !== indexPath) {
       this.setState({ indexPath: nextProps.index });
@@ -31,6 +33,10 @@ export default class Table extends Component {
     if (nextProps.width !== 0) {
       this.setState({ width: nextProps.width })
     }
+  }
+
+  componentDidMount() {
+    this.props.rebuildTooltip();
   }
 
   _renderRowTitle() {
@@ -134,7 +140,7 @@ export default class Table extends Component {
 
   render() {
     return (
-      <div className={_styles.table_wrapper}>
+      <div className={styles.table_wrapper}>
         {this._renderRowTitle()}
         {this._renderRowBody()}
       </div>

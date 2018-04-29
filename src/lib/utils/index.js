@@ -1,10 +1,14 @@
 export function getTextWidth(text, font) {
   let element = document.getElementById("count");
-  element.style.fontSize = font;
-  element.innerHTML = text;
-  let width = element.clientWidth;
-  element.innerHTML = '';
-  return width;
+  if (element) {
+    element.style.fontSize = font;
+    element.innerHTML = text;
+    let width = element.clientWidth;
+    element.innerHTML = '';
+    return width;
+  } else {
+    return 0;
+  }
 }
 
 export function debounce(fn, delay) {
