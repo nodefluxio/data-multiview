@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import noImage from '../../assets/images/no-image.png';
 import { getTextWidth } from '../../utils';
-import ReactTooltip from 'react-tooltip'
 
 import styles from "./styles.scss";
 
@@ -13,7 +12,8 @@ export default class Grid extends Component {
     this.state = {
       config: props.config,
       data: props.data,
-      indexPath: props.index
+      indexPath: props.index,
+      rebuildTooltip: props.rebuildTooltip
     };
   }
 
@@ -33,7 +33,7 @@ export default class Grid extends Component {
   }
 
   componentDidMount() {
-    this.props.rebuildTooltip();
+    this.state.rebuildTooltip();
   }
 
   _onAction = val => {
@@ -45,12 +45,7 @@ export default class Grid extends Component {
   _renderRowBody() {
     let { data } = this.state;
     return data.map((itemRow, indexRow) => {
-      let imageVar = itemRow.find(item => {
-        if (item.type === "image") {
-          return item;
-        }
-        return null;
-      });
+      let imageVar = itemRow.find(x => x.image === "image");
       let imageVal =
         imageVar === null || imageVar === undefined
           ? noImage

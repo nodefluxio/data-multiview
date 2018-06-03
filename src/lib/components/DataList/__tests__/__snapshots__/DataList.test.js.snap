@@ -1,0 +1,930 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing DataList render component without problem 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <DataList
+    config={
+        Array [
+            Object {
+              "text": "Image",
+              "textColor": "red",
+              "textPath": "image",
+              "type": "image",
+              "valuePath": "image",
+            },
+            Object {
+              "text": "Fullname",
+              "textPath": "fullname",
+              "type": "string",
+              "valuePath": "fullname",
+            },
+            Object {
+              "text": "Role",
+              "textPath": "role",
+              "type": "string",
+              "valuePath": "role",
+            },
+            Object {
+              "text": "Datetime",
+              "textPath": "datetime",
+              "type": "date",
+              "valuePath": "datetime",
+            },
+            Object {
+              "text": "Json",
+              "textPath": "json",
+              "type": "json",
+              "valuePath": "json",
+            },
+          ]
+    }
+    data={
+        Array [
+            Object {
+              "cam_detail": Object {
+                "id": 2,
+                "name": "kamera huawei",
+              },
+              "created_at": "2018-02-23T09:43:08.928Z",
+              "id": 305,
+              "image": "https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+              "rule_detail": Object {
+                "id": 1,
+              },
+              "vas_detail": Object {
+                "id": 3,
+                "name": "VAS 3",
+              },
+            },
+            Object {
+              "cam_detail": Object {
+                "id": 3,
+                "name": "kamera avigilon",
+              },
+              "created_at": "2018-02-23T09:43:08.928Z",
+              "id": 306,
+              "image": "http://192.168.100.125:8080/",
+              "rule_detail": Object {
+                "id": 2,
+                "name": "",
+              },
+              "vas_detail": Object {
+                "id": 4,
+                "name": "VAS 4",
+              },
+            },
+            Object {
+              "cam_detail": Object {
+                "id": 3,
+                "name": "kamera avigilon",
+              },
+              "created_at": "2018-02-23T09:43:08.928Z",
+              "id": 306,
+              "image": "http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg",
+              "rule_detail": Object {
+                "id": 2,
+                "name": null,
+              },
+              "vas_detail": Object {
+                "id": 4,
+                "name": "VAS 4",
+              },
+            },
+            Object {
+              "cam_detail": Object {
+                "id": 3,
+                "name": "kamera avigilon",
+              },
+              "created_at": "2018-02-23T09:43:08.928Z",
+              "id": 306,
+              "image": "http://192.168.100.125:8080/",
+              "rule_detail": Object {
+                "id": 2,
+                "name": "Crowd Behaviour",
+              },
+              "vas_detail": Object {
+                "id": 4,
+                "name": "VAS 4",
+              },
+            },
+          ]
+    }
+    enableActionBlock={false}
+    index="id"
+    onAction={[Function]}
+    type="grid"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Filter
+          action={[Function]}
+          config={
+                    Array [
+                              Object {
+                                "text": "Image",
+                                "textColor": "red",
+                                "textPath": "image",
+                                "type": "image",
+                                "valuePath": "image",
+                              },
+                              Object {
+                                "text": "Fullname",
+                                "textPath": "fullname",
+                                "type": "string",
+                                "valuePath": "fullname",
+                              },
+                              Object {
+                                "text": "Role",
+                                "textPath": "role",
+                                "type": "string",
+                                "valuePath": "role",
+                              },
+                              Object {
+                                "text": "Datetime",
+                                "textPath": "datetime",
+                                "type": "date",
+                                "valuePath": "datetime",
+                              },
+                              Object {
+                                "text": "Json",
+                                "textPath": "json",
+                                "type": "json",
+                                "valuePath": "json",
+                              },
+                            ]
+          }
+          data={
+                    Array [
+                              Object {},
+                              Object {
+                                "listValue": Array [
+                                  Object {
+                                    "text": undefined,
+                                    "value": undefined,
+                                  },
+                                ],
+                                "title": "Fullname",
+                              },
+                              Object {
+                                "listValue": Array [
+                                  Object {
+                                    "text": undefined,
+                                    "value": undefined,
+                                  },
+                                ],
+                                "title": "Role",
+                              },
+                              Object {
+                                "listValue": Array [
+                                  Object {
+                                    "text": "03 Jun 2018",
+                                    "value": "03 Jun 2018",
+                                  },
+                                ],
+                                "title": "Datetime",
+                              },
+                              Object {
+                                "title": "Json",
+                              },
+                            ]
+          }
+          type="grid"
+/>,
+        <Pagination
+          config={
+                    Array [
+                              Object {
+                                "text": "Image",
+                                "textColor": "red",
+                                "textPath": "image",
+                                "type": "image",
+                                "valuePath": "image",
+                              },
+                              Object {
+                                "text": "Fullname",
+                                "textPath": "fullname",
+                                "type": "string",
+                                "valuePath": "fullname",
+                              },
+                              Object {
+                                "text": "Role",
+                                "textPath": "role",
+                                "type": "string",
+                                "valuePath": "role",
+                              },
+                              Object {
+                                "text": "Datetime",
+                                "textPath": "datetime",
+                                "type": "date",
+                                "valuePath": "datetime",
+                              },
+                              Object {
+                                "text": "Json",
+                                "textPath": "json",
+                                "type": "json",
+                                "valuePath": "json",
+                              },
+                            ]
+          }
+          data={
+                    Array [
+                              Object {
+                                "cam_detail": Object {
+                                  "id": 2,
+                                  "name": "kamera huawei",
+                                },
+                                "created_at": "2018-02-23T09:43:08.928Z",
+                                "id": 305,
+                                "image": "https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+                                "rule_detail": Object {
+                                  "id": 1,
+                                },
+                                "vas_detail": Object {
+                                  "id": 3,
+                                  "name": "VAS 3",
+                                },
+                              },
+                              Object {
+                                "cam_detail": Object {
+                                  "id": 3,
+                                  "name": "kamera avigilon",
+                                },
+                                "created_at": "2018-02-23T09:43:08.928Z",
+                                "id": 306,
+                                "image": "http://192.168.100.125:8080/",
+                                "rule_detail": Object {
+                                  "id": 2,
+                                  "name": "",
+                                },
+                                "vas_detail": Object {
+                                  "id": 4,
+                                  "name": "VAS 4",
+                                },
+                              },
+                              Object {
+                                "cam_detail": Object {
+                                  "id": 3,
+                                  "name": "kamera avigilon",
+                                },
+                                "created_at": "2018-02-23T09:43:08.928Z",
+                                "id": 306,
+                                "image": "http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg",
+                                "rule_detail": Object {
+                                  "id": 2,
+                                  "name": null,
+                                },
+                                "vas_detail": Object {
+                                  "id": 4,
+                                  "name": "VAS 4",
+                                },
+                              },
+                              Object {
+                                "cam_detail": Object {
+                                  "id": 3,
+                                  "name": "kamera avigilon",
+                                },
+                                "created_at": "2018-02-23T09:43:08.928Z",
+                                "id": 306,
+                                "image": "http://192.168.100.125:8080/",
+                                "rule_detail": Object {
+                                  "id": 2,
+                                  "name": "Crowd Behaviour",
+                                },
+                                "vas_detail": Object {
+                                  "id": 4,
+                                  "name": "VAS 4",
+                                },
+                              },
+                            ]
+          }
+          dataPerPage={20}
+          enableActionBlock={false}
+          index="id"
+          onAction={[Function]}
+          type="grid"
+/>,
+      ],
+      "className": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "action": [Function],
+          "config": Array [
+            Object {
+              "text": "Image",
+              "textColor": "red",
+              "textPath": "image",
+              "type": "image",
+              "valuePath": "image",
+            },
+            Object {
+              "text": "Fullname",
+              "textPath": "fullname",
+              "type": "string",
+              "valuePath": "fullname",
+            },
+            Object {
+              "text": "Role",
+              "textPath": "role",
+              "type": "string",
+              "valuePath": "role",
+            },
+            Object {
+              "text": "Datetime",
+              "textPath": "datetime",
+              "type": "date",
+              "valuePath": "datetime",
+            },
+            Object {
+              "text": "Json",
+              "textPath": "json",
+              "type": "json",
+              "valuePath": "json",
+            },
+          ],
+          "data": Array [
+            Object {},
+            Object {
+              "listValue": Array [
+                Object {
+                  "text": undefined,
+                  "value": undefined,
+                },
+              ],
+              "title": "Fullname",
+            },
+            Object {
+              "listValue": Array [
+                Object {
+                  "text": undefined,
+                  "value": undefined,
+                },
+              ],
+              "title": "Role",
+            },
+            Object {
+              "listValue": Array [
+                Object {
+                  "text": "03 Jun 2018",
+                  "value": "03 Jun 2018",
+                },
+              ],
+              "title": "Datetime",
+            },
+            Object {
+              "title": "Json",
+            },
+          ],
+          "type": "grid",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": undefined,
+          "config": Array [
+            Object {
+              "text": "Image",
+              "textColor": "red",
+              "textPath": "image",
+              "type": "image",
+              "valuePath": "image",
+            },
+            Object {
+              "text": "Fullname",
+              "textPath": "fullname",
+              "type": "string",
+              "valuePath": "fullname",
+            },
+            Object {
+              "text": "Role",
+              "textPath": "role",
+              "type": "string",
+              "valuePath": "role",
+            },
+            Object {
+              "text": "Datetime",
+              "textPath": "datetime",
+              "type": "date",
+              "valuePath": "datetime",
+            },
+            Object {
+              "text": "Json",
+              "textPath": "json",
+              "type": "json",
+              "valuePath": "json",
+            },
+          ],
+          "data": Array [
+            Object {
+              "cam_detail": Object {
+                "id": 2,
+                "name": "kamera huawei",
+              },
+              "created_at": "2018-02-23T09:43:08.928Z",
+              "id": 305,
+              "image": "https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+              "rule_detail": Object {
+                "id": 1,
+              },
+              "vas_detail": Object {
+                "id": 3,
+                "name": "VAS 3",
+              },
+            },
+            Object {
+              "cam_detail": Object {
+                "id": 3,
+                "name": "kamera avigilon",
+              },
+              "created_at": "2018-02-23T09:43:08.928Z",
+              "id": 306,
+              "image": "http://192.168.100.125:8080/",
+              "rule_detail": Object {
+                "id": 2,
+                "name": "",
+              },
+              "vas_detail": Object {
+                "id": 4,
+                "name": "VAS 4",
+              },
+            },
+            Object {
+              "cam_detail": Object {
+                "id": 3,
+                "name": "kamera avigilon",
+              },
+              "created_at": "2018-02-23T09:43:08.928Z",
+              "id": 306,
+              "image": "http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg",
+              "rule_detail": Object {
+                "id": 2,
+                "name": null,
+              },
+              "vas_detail": Object {
+                "id": 4,
+                "name": "VAS 4",
+              },
+            },
+            Object {
+              "cam_detail": Object {
+                "id": 3,
+                "name": "kamera avigilon",
+              },
+              "created_at": "2018-02-23T09:43:08.928Z",
+              "id": 306,
+              "image": "http://192.168.100.125:8080/",
+              "rule_detail": Object {
+                "id": 2,
+                "name": "Crowd Behaviour",
+              },
+              "vas_detail": Object {
+                "id": 4,
+                "name": "VAS 4",
+              },
+            },
+          ],
+          "dataPerPage": 20,
+          "enableActionBlock": false,
+          "index": "id",
+          "onAction": [Function],
+          "type": "grid",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Filter
+            action={[Function]}
+            config={
+                        Array [
+                                    Object {
+                                      "text": "Image",
+                                      "textColor": "red",
+                                      "textPath": "image",
+                                      "type": "image",
+                                      "valuePath": "image",
+                                    },
+                                    Object {
+                                      "text": "Fullname",
+                                      "textPath": "fullname",
+                                      "type": "string",
+                                      "valuePath": "fullname",
+                                    },
+                                    Object {
+                                      "text": "Role",
+                                      "textPath": "role",
+                                      "type": "string",
+                                      "valuePath": "role",
+                                    },
+                                    Object {
+                                      "text": "Datetime",
+                                      "textPath": "datetime",
+                                      "type": "date",
+                                      "valuePath": "datetime",
+                                    },
+                                    Object {
+                                      "text": "Json",
+                                      "textPath": "json",
+                                      "type": "json",
+                                      "valuePath": "json",
+                                    },
+                                  ]
+            }
+            data={
+                        Array [
+                                    Object {},
+                                    Object {
+                                      "listValue": Array [
+                                        Object {
+                                          "text": undefined,
+                                          "value": undefined,
+                                        },
+                                      ],
+                                      "title": "Fullname",
+                                    },
+                                    Object {
+                                      "listValue": Array [
+                                        Object {
+                                          "text": undefined,
+                                          "value": undefined,
+                                        },
+                                      ],
+                                      "title": "Role",
+                                    },
+                                    Object {
+                                      "listValue": Array [
+                                        Object {
+                                          "text": "03 Jun 2018",
+                                          "value": "03 Jun 2018",
+                                        },
+                                      ],
+                                      "title": "Datetime",
+                                    },
+                                    Object {
+                                      "title": "Json",
+                                    },
+                                  ]
+            }
+            type="grid"
+/>,
+          <Pagination
+            config={
+                        Array [
+                                    Object {
+                                      "text": "Image",
+                                      "textColor": "red",
+                                      "textPath": "image",
+                                      "type": "image",
+                                      "valuePath": "image",
+                                    },
+                                    Object {
+                                      "text": "Fullname",
+                                      "textPath": "fullname",
+                                      "type": "string",
+                                      "valuePath": "fullname",
+                                    },
+                                    Object {
+                                      "text": "Role",
+                                      "textPath": "role",
+                                      "type": "string",
+                                      "valuePath": "role",
+                                    },
+                                    Object {
+                                      "text": "Datetime",
+                                      "textPath": "datetime",
+                                      "type": "date",
+                                      "valuePath": "datetime",
+                                    },
+                                    Object {
+                                      "text": "Json",
+                                      "textPath": "json",
+                                      "type": "json",
+                                      "valuePath": "json",
+                                    },
+                                  ]
+            }
+            data={
+                        Array [
+                                    Object {
+                                      "cam_detail": Object {
+                                        "id": 2,
+                                        "name": "kamera huawei",
+                                      },
+                                      "created_at": "2018-02-23T09:43:08.928Z",
+                                      "id": 305,
+                                      "image": "https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+                                      "rule_detail": Object {
+                                        "id": 1,
+                                      },
+                                      "vas_detail": Object {
+                                        "id": 3,
+                                        "name": "VAS 3",
+                                      },
+                                    },
+                                    Object {
+                                      "cam_detail": Object {
+                                        "id": 3,
+                                        "name": "kamera avigilon",
+                                      },
+                                      "created_at": "2018-02-23T09:43:08.928Z",
+                                      "id": 306,
+                                      "image": "http://192.168.100.125:8080/",
+                                      "rule_detail": Object {
+                                        "id": 2,
+                                        "name": "",
+                                      },
+                                      "vas_detail": Object {
+                                        "id": 4,
+                                        "name": "VAS 4",
+                                      },
+                                    },
+                                    Object {
+                                      "cam_detail": Object {
+                                        "id": 3,
+                                        "name": "kamera avigilon",
+                                      },
+                                      "created_at": "2018-02-23T09:43:08.928Z",
+                                      "id": 306,
+                                      "image": "http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg",
+                                      "rule_detail": Object {
+                                        "id": 2,
+                                        "name": null,
+                                      },
+                                      "vas_detail": Object {
+                                        "id": 4,
+                                        "name": "VAS 4",
+                                      },
+                                    },
+                                    Object {
+                                      "cam_detail": Object {
+                                        "id": 3,
+                                        "name": "kamera avigilon",
+                                      },
+                                      "created_at": "2018-02-23T09:43:08.928Z",
+                                      "id": 306,
+                                      "image": "http://192.168.100.125:8080/",
+                                      "rule_detail": Object {
+                                        "id": 2,
+                                        "name": "Crowd Behaviour",
+                                      },
+                                      "vas_detail": Object {
+                                        "id": 4,
+                                        "name": "VAS 4",
+                                      },
+                                    },
+                                  ]
+            }
+            dataPerPage={20}
+            enableActionBlock={false}
+            index="id"
+            onAction={[Function]}
+            type="grid"
+/>,
+        ],
+        "className": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "action": [Function],
+            "config": Array [
+              Object {
+                "text": "Image",
+                "textColor": "red",
+                "textPath": "image",
+                "type": "image",
+                "valuePath": "image",
+              },
+              Object {
+                "text": "Fullname",
+                "textPath": "fullname",
+                "type": "string",
+                "valuePath": "fullname",
+              },
+              Object {
+                "text": "Role",
+                "textPath": "role",
+                "type": "string",
+                "valuePath": "role",
+              },
+              Object {
+                "text": "Datetime",
+                "textPath": "datetime",
+                "type": "date",
+                "valuePath": "datetime",
+              },
+              Object {
+                "text": "Json",
+                "textPath": "json",
+                "type": "json",
+                "valuePath": "json",
+              },
+            ],
+            "data": Array [
+              Object {},
+              Object {
+                "listValue": Array [
+                  Object {
+                    "text": undefined,
+                    "value": undefined,
+                  },
+                ],
+                "title": "Fullname",
+              },
+              Object {
+                "listValue": Array [
+                  Object {
+                    "text": undefined,
+                    "value": undefined,
+                  },
+                ],
+                "title": "Role",
+              },
+              Object {
+                "listValue": Array [
+                  Object {
+                    "text": "03 Jun 2018",
+                    "value": "03 Jun 2018",
+                  },
+                ],
+                "title": "Datetime",
+              },
+              Object {
+                "title": "Json",
+              },
+            ],
+            "type": "grid",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": undefined,
+            "config": Array [
+              Object {
+                "text": "Image",
+                "textColor": "red",
+                "textPath": "image",
+                "type": "image",
+                "valuePath": "image",
+              },
+              Object {
+                "text": "Fullname",
+                "textPath": "fullname",
+                "type": "string",
+                "valuePath": "fullname",
+              },
+              Object {
+                "text": "Role",
+                "textPath": "role",
+                "type": "string",
+                "valuePath": "role",
+              },
+              Object {
+                "text": "Datetime",
+                "textPath": "datetime",
+                "type": "date",
+                "valuePath": "datetime",
+              },
+              Object {
+                "text": "Json",
+                "textPath": "json",
+                "type": "json",
+                "valuePath": "json",
+              },
+            ],
+            "data": Array [
+              Object {
+                "cam_detail": Object {
+                  "id": 2,
+                  "name": "kamera huawei",
+                },
+                "created_at": "2018-02-23T09:43:08.928Z",
+                "id": 305,
+                "image": "https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+                "rule_detail": Object {
+                  "id": 1,
+                },
+                "vas_detail": Object {
+                  "id": 3,
+                  "name": "VAS 3",
+                },
+              },
+              Object {
+                "cam_detail": Object {
+                  "id": 3,
+                  "name": "kamera avigilon",
+                },
+                "created_at": "2018-02-23T09:43:08.928Z",
+                "id": 306,
+                "image": "http://192.168.100.125:8080/",
+                "rule_detail": Object {
+                  "id": 2,
+                  "name": "",
+                },
+                "vas_detail": Object {
+                  "id": 4,
+                  "name": "VAS 4",
+                },
+              },
+              Object {
+                "cam_detail": Object {
+                  "id": 3,
+                  "name": "kamera avigilon",
+                },
+                "created_at": "2018-02-23T09:43:08.928Z",
+                "id": 306,
+                "image": "http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg",
+                "rule_detail": Object {
+                  "id": 2,
+                  "name": null,
+                },
+                "vas_detail": Object {
+                  "id": 4,
+                  "name": "VAS 4",
+                },
+              },
+              Object {
+                "cam_detail": Object {
+                  "id": 3,
+                  "name": "kamera avigilon",
+                },
+                "created_at": "2018-02-23T09:43:08.928Z",
+                "id": 306,
+                "image": "http://192.168.100.125:8080/",
+                "rule_detail": Object {
+                  "id": 2,
+                  "name": "Crowd Behaviour",
+                },
+                "vas_detail": Object {
+                  "id": 4,
+                  "name": "VAS 4",
+                },
+              },
+            ],
+            "dataPerPage": 20,
+            "enableActionBlock": false,
+            "index": "id",
+            "onAction": [Function],
+            "type": "grid",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
