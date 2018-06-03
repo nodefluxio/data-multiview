@@ -1,0 +1,651 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Pagination render component without problem 1`] = `
+<Pagination
+  config={
+    Array [
+      Object {
+        "text": "Image",
+        "textColor": "red",
+        "textPath": "image",
+        "type": "image",
+        "valuePath": "image",
+      },
+      Object {
+        "text": "Fullname",
+        "textPath": "fullname",
+        "type": "string",
+        "valuePath": "fullname",
+      },
+      Object {
+        "text": "Role",
+        "textPath": "role",
+        "type": "string",
+        "valuePath": "role",
+      },
+      Object {
+        "text": "Datetime",
+        "textPath": "datetime",
+        "type": "date",
+        "valuePath": "datetime",
+      },
+      Object {
+        "text": "Json",
+        "textPath": "json",
+        "type": "json",
+        "valuePath": "json",
+      },
+      Object {
+        "text": "Action",
+      },
+    ]
+  }
+  data={
+    Array [
+      Object {
+        "cam_detail": Object {
+          "id": 2,
+          "name": "kamera huawei",
+        },
+        "created_at": "2018-02-23T09:43:08.928Z",
+        "id": 305,
+        "image": "https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+        "rule_detail": Object {
+          "id": 1,
+        },
+        "vas_detail": Object {
+          "id": 3,
+          "name": "VAS 3",
+        },
+      },
+      Object {
+        "cam_detail": Object {
+          "id": 3,
+          "name": "kamera avigilon",
+        },
+        "created_at": "2018-02-23T09:43:08.928Z",
+        "id": 306,
+        "image": "http://192.168.100.125:8080/",
+        "rule_detail": Object {
+          "id": 2,
+          "name": "",
+        },
+        "vas_detail": Object {
+          "id": 4,
+          "name": "VAS 4",
+        },
+      },
+      Object {
+        "cam_detail": Object {
+          "id": 3,
+          "name": "kamera avigilon",
+        },
+        "created_at": "2018-02-23T09:43:08.928Z",
+        "id": 306,
+        "image": "http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg",
+        "rule_detail": Object {
+          "id": 2,
+          "name": null,
+        },
+        "vas_detail": Object {
+          "id": 4,
+          "name": "VAS 4",
+        },
+      },
+      Object {
+        "cam_detail": Object {
+          "id": 3,
+          "name": "kamera avigilon",
+        },
+        "created_at": "2018-02-23T09:43:08.928Z",
+        "id": 306,
+        "image": "http://192.168.100.125:8080/",
+        "rule_detail": Object {
+          "id": 2,
+          "name": "Crowd Behaviour",
+        },
+        "vas_detail": Object {
+          "id": 4,
+          "name": "VAS 4",
+        },
+      },
+    ]
+  }
+  dataPerPage={20}
+  enableActionBlock={false}
+  index="id"
+  onAction={[Function]}
+  type="grid"
+>
+  <div>
+    <ReactTooltip
+      insecure={true}
+      resizeHide={true}
+      wrapper="div"
+    >
+      <div
+        className="__react_component_tooltip place-top type-dark "
+        data-id="tooltip"
+      />
+    </ReactTooltip>
+    <Grid
+      action={[Function]}
+      config={
+        Array [
+          Object {
+            "text": "Image",
+            "textColor": "red",
+            "textPath": "image",
+            "type": "image",
+            "valuePath": "image",
+          },
+          Object {
+            "text": "Fullname",
+            "textPath": "fullname",
+            "type": "string",
+            "valuePath": "fullname",
+          },
+          Object {
+            "text": "Role",
+            "textPath": "role",
+            "type": "string",
+            "valuePath": "role",
+          },
+          Object {
+            "text": "Datetime",
+            "textPath": "datetime",
+            "type": "date",
+            "valuePath": "datetime",
+          },
+          Object {
+            "text": "Json",
+            "textPath": "json",
+            "type": "json",
+            "valuePath": "json",
+          },
+          Object {
+            "text": "Action",
+          },
+        ]
+      }
+      data={
+        Array [
+          Array [
+            Object {
+              "textColor": "red",
+              "type": "image",
+              "value": Object {
+                "index": 305,
+                "text": "https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+                "value": "https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "string",
+              "value": Object {
+                "index": 305,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "string",
+              "value": Object {
+                "index": 305,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "date",
+              "value": Object {
+                "index": 305,
+                "text": "03 Jun 2018",
+                "value": "03 Jun 2018",
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "json",
+              "value": Object {
+                "index": 305,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "type": "Action",
+              "value": Object {
+                "index": undefined,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+          ],
+          Array [
+            Object {
+              "textColor": "red",
+              "type": "image",
+              "value": Object {
+                "index": 306,
+                "text": "http://192.168.100.125:8080/",
+                "value": "http://192.168.100.125:8080/",
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "string",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "string",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "date",
+              "value": Object {
+                "index": 306,
+                "text": "03 Jun 2018",
+                "value": "03 Jun 2018",
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "json",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "type": "Action",
+              "value": Object {
+                "index": undefined,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+          ],
+          Array [
+            Object {
+              "textColor": "red",
+              "type": "image",
+              "value": Object {
+                "index": 306,
+                "text": "http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg",
+                "value": "http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg",
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "string",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "string",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "date",
+              "value": Object {
+                "index": 306,
+                "text": "03 Jun 2018",
+                "value": "03 Jun 2018",
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "json",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "type": "Action",
+              "value": Object {
+                "index": undefined,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+          ],
+          Array [
+            Object {
+              "textColor": "red",
+              "type": "image",
+              "value": Object {
+                "index": 306,
+                "text": "http://192.168.100.125:8080/",
+                "value": "http://192.168.100.125:8080/",
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "string",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "string",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "date",
+              "value": Object {
+                "index": 306,
+                "text": "03 Jun 2018",
+                "value": "03 Jun 2018",
+              },
+            },
+            Object {
+              "textColor": undefined,
+              "type": "json",
+              "value": Object {
+                "index": 306,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+            Object {
+              "type": "Action",
+              "value": Object {
+                "index": undefined,
+                "text": undefined,
+                "value": undefined,
+              },
+            },
+          ],
+        ]
+      }
+      index="id"
+      key="1"
+      rebuildTooltip={[Function]}
+      width={0}
+    >
+      <div>
+        <div
+          className="box-wrapper"
+          key="0"
+        >
+          <div
+            className="image-wrapper"
+            onClick={[Function]}
+            style={
+              Object {
+                "background": "url(no-image.png)",
+              }
+            }
+          />
+          <div
+            className="block"
+          >
+            <div
+              className="action-wrapper"
+            />
+          </div>
+          <div
+            className="desc"
+            data-tip=""
+            key="0"
+            style={Object {}}
+          />
+          <div
+            className="desc"
+            data-tip=""
+            key="1"
+            style={Object {}}
+          />
+          <div
+            className="desc"
+            data-tip=""
+            key="2"
+            style={Object {}}
+          >
+            03 Jun 2018
+          </div>
+          <div
+            className="desc"
+            data-tip=""
+            key="3"
+            style={Object {}}
+          />
+        </div>
+        <div
+          className="box-wrapper"
+          key="1"
+        >
+          <div
+            className="image-wrapper"
+            onClick={[Function]}
+            style={
+              Object {
+                "background": "url(no-image.png)",
+              }
+            }
+          />
+          <div
+            className="block"
+          >
+            <div
+              className="action-wrapper"
+            />
+          </div>
+          <div
+            className="desc"
+            data-tip=""
+            key="0"
+            style={Object {}}
+          />
+          <div
+            className="desc"
+            data-tip=""
+            key="1"
+            style={Object {}}
+          />
+          <div
+            className="desc"
+            data-tip=""
+            key="2"
+            style={Object {}}
+          >
+            03 Jun 2018
+          </div>
+          <div
+            className="desc"
+            data-tip=""
+            key="3"
+            style={Object {}}
+          />
+        </div>
+        <div
+          className="box-wrapper"
+          key="2"
+        >
+          <div
+            className="image-wrapper"
+            onClick={[Function]}
+            style={
+              Object {
+                "background": "url(no-image.png)",
+              }
+            }
+          />
+          <div
+            className="block"
+          >
+            <div
+              className="action-wrapper"
+            />
+          </div>
+          <div
+            className="desc"
+            data-tip=""
+            key="0"
+            style={Object {}}
+          />
+          <div
+            className="desc"
+            data-tip=""
+            key="1"
+            style={Object {}}
+          />
+          <div
+            className="desc"
+            data-tip=""
+            key="2"
+            style={Object {}}
+          >
+            03 Jun 2018
+          </div>
+          <div
+            className="desc"
+            data-tip=""
+            key="3"
+            style={Object {}}
+          />
+        </div>
+        <div
+          className="box-wrapper"
+          key="3"
+        >
+          <div
+            className="image-wrapper"
+            onClick={[Function]}
+            style={
+              Object {
+                "background": "url(no-image.png)",
+              }
+            }
+          />
+          <div
+            className="block"
+          >
+            <div
+              className="action-wrapper"
+            />
+          </div>
+          <div
+            className="desc"
+            data-tip=""
+            key="0"
+            style={Object {}}
+          />
+          <div
+            className="desc"
+            data-tip=""
+            key="1"
+            style={Object {}}
+          />
+          <div
+            className="desc"
+            data-tip=""
+            key="2"
+            style={Object {}}
+          >
+            03 Jun 2018
+          </div>
+          <div
+            className="desc"
+            data-tip=""
+            key="3"
+            style={Object {}}
+          />
+        </div>
+      </div>
+    </Grid>
+    <div
+      className="pagination-wrapper"
+      key="2"
+    >
+      <div
+        className="data-page"
+      >
+        <select
+          onChange={[Function]}
+          value={20}
+        >
+          <option
+            key="0"
+            value={20}
+          >
+            20
+          </option>
+          <option
+            key="1"
+            value={50}
+          >
+            50
+          </option>
+          <option
+            key="2"
+            value={100}
+          >
+            100
+          </option>
+        </select>
+      </div>
+      <div
+        className="page-number"
+      >
+        <span>
+          Page
+        </span>
+        <a
+          key="0"
+          onClick={[Function]}
+        >
+          &lt;
+        </a>
+        <a
+          className="active"
+          key="1"
+          onClick={[Function]}
+        >
+          1
+        </a>
+        <a
+          key="11"
+          onClick={[Function]}
+        >
+          &gt;
+        </a>
+      </div>
+    </div>
+  </div>
+</Pagination>
+`;
