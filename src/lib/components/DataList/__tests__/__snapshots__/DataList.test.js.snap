@@ -190,8 +190,8 @@ ShallowWrapper {
                               Object {
                                 "listValue": Array [
                                   Object {
-                                    "text": "03 Jun 2018",
-                                    "value": "03 Jun 2018",
+                                    "text": "12 Jun 2018",
+                                    "value": "12 Jun 2018",
                                   },
                                 ],
                                 "title": "Datetime",
@@ -383,8 +383,8 @@ ShallowWrapper {
             Object {
               "listValue": Array [
                 Object {
-                  "text": "03 Jun 2018",
-                  "value": "03 Jun 2018",
+                  "text": "12 Jun 2018",
+                  "value": "12 Jun 2018",
                 },
               ],
               "title": "Datetime",
@@ -588,8 +588,8 @@ ShallowWrapper {
                                     Object {
                                       "listValue": Array [
                                         Object {
-                                          "text": "03 Jun 2018",
-                                          "value": "03 Jun 2018",
+                                          "text": "12 Jun 2018",
+                                          "value": "12 Jun 2018",
                                         },
                                       ],
                                       "title": "Datetime",
@@ -781,8 +781,8 @@ ShallowWrapper {
               Object {
                 "listValue": Array [
                   Object {
-                    "text": "03 Jun 2018",
-                    "value": "03 Jun 2018",
+                    "text": "12 Jun 2018",
+                    "value": "12 Jun 2018",
                   },
                 ],
                 "title": "Datetime",

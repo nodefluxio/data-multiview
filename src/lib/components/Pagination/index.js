@@ -160,8 +160,18 @@ export default class Pagination extends Component {
         </option>
       );
     });
+    
+
 
     let newFormatData = parsingData(currentData, config, index, actionBlock, this.action, enableActionBlock);
+
+    let startDataNumber = 0;
+    let endDataNumber = 0;
+    if (newFormatData !== undefined) {
+      let x = dataPerPage == newFormatData.length ? newFormatData.length : dataPerPage;
+      startDataNumber = currentPage * x - (x - 1);
+      endDataNumber =  dataPerPage == newFormatData.length ? (currentPage * dataPerPage) : ((currentPage - 1) * dataPerPage + newFormatData.length )
+    }
     switch (type) {
       case "grid":
         return [
@@ -181,6 +191,7 @@ export default class Pagination extends Component {
               <select value={dataPerPage} onChange={this.changeDataPerPage()}>
                 {htmlDataPerPage}
               </select>
+              <span>Showing {`${startDataNumber} - ${endDataNumber}`} of {data.length} items</span>
             </div>
             <div className="page-number"><span>Page</span>{renderPageNumbers}</div>
           </div>
@@ -204,6 +215,7 @@ export default class Pagination extends Component {
               <select value={dataPerPage} onChange={this.changeDataPerPage()}>
                 {htmlDataPerPage}
               </select>
+              <span>Showing {`${startDataNumber} - ${endDataNumber}`} of {data.length} items</span>
             </div>
             <div className="page-number"><span>Page</span>{renderPageNumbers}</div>
           </div>
