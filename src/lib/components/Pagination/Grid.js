@@ -45,7 +45,8 @@ export default class Grid extends Component {
   _renderRowBody() {
     let { data } = this.state;
     return data.map((itemRow, indexRow) => {
-      let imageVar = itemRow.find(x => x.image === "image");
+      console.log(itemRow);
+      let imageVar = itemRow.find(x => x.type === "image");
       let imageVal =
         imageVar === null || imageVar === undefined
           ? noImage
