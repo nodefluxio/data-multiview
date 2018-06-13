@@ -17,6 +17,10 @@ class ActionBlock extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState(nextProps)
+  }
+
   _onAction = (val) => {
     return event => {
       let { index, actionName, confirmDialog, confirmTitle, confirmText, confirmButton } = this.state;

@@ -168,9 +168,9 @@ export default class Pagination extends Component {
     let startDataNumber = 0;
     let endDataNumber = 0;
     if (newFormatData !== undefined) {
-      let x = dataPerPage == newFormatData.length ? newFormatData.length : dataPerPage;
+      let x = dataPerPage === newFormatData.length ? newFormatData.length : dataPerPage;
       startDataNumber = currentPage * x - (x - 1);
-      endDataNumber =  dataPerPage == newFormatData.length ? (currentPage * dataPerPage) : ((currentPage - 1) * dataPerPage + newFormatData.length )
+      endDataNumber =  dataPerPage === newFormatData.length ? (currentPage * dataPerPage) : ((currentPage - 1) * dataPerPage + newFormatData.length )
     }
     switch (type) {
       case "grid":
