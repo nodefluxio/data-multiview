@@ -51,7 +51,6 @@ export default class Table extends Component {
       }
       return null;
     });
-
     return <div className="head-wrapper">{listTableHeadRow}</div>;
   }
 
@@ -90,7 +89,6 @@ export default class Table extends Component {
             return <div onClick={actionView} key={indexColumn} className="column-wrapper" style={customStyle}>{value}</div>;
           }
         } else {
-
           if (itemColumn.textColor !== undefined && itemColumn.textColor !== null) {
             customStyle.color = itemColumn.textColor;
           }
@@ -116,7 +114,6 @@ export default class Table extends Component {
         return null;
       });
 
-      let percColumn = 100 / columnLength;
       let customCls = '';
       if (widthColumn !== 0) {
         for (let i = 0; i < columnLength; i++) {
@@ -124,7 +121,7 @@ export default class Table extends Component {
         }
       } else {
         for (let i = 0; i < columnLength; i++) {
-          customCls += percColumn.toString() + '% ';
+          customCls += (100 / columnLength).toString() + '% ';
         }
       }
 

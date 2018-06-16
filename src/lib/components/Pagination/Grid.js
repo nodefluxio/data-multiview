@@ -36,13 +36,13 @@ export default class Grid extends Component {
     this.state.rebuildTooltip();
   }
 
-  _onAction = val => {
+  action = val => {
     return event => {
       this.props.action('view', val);
     };
   };
 
-  _renderRowBody() {
+  renderRowBody() {
     let { data } = this.state;
     return data.map((itemRow, indexRow) => {
       let imageVar = itemRow.find(x => x.type === "image");
@@ -57,7 +57,6 @@ export default class Grid extends Component {
 
       let listFieldHtml = listField.map((item, index) => {
         let customStyle = {};
-        // customStyle.zIndex = index;
         if (item.textColor !== undefined && item.textColor !== null) {
           customStyle.color = item.textColor;
         }
@@ -70,16 +69,14 @@ export default class Grid extends Component {
           </div>
         )
       })
-      let actionTemp = itemRow.find(item => {
-        return item.type === 'Action';
-      })
+      let actionTemp = itemRow.find(x => x.type === "Action");
       actionTemp = actionTemp === undefined ? null : actionTemp.value.value
       return (
         <div
           key={indexRow}
           className="box-wrapper"
         >
-          <div onClick={this._onAction(itemRow[0].value.index)} className="image-wrapper" style={{ background: `url(${imageVal})` }} />
+          <div onClick={this.action(itemRow[0].value.index)} className="image-wrapper" style={{ background: `url(${imageVal})` }} />
           <div className="block" ><div className="action-wrapper">{actionTemp}</div></div>
           {listFieldHtml}
         </div>
@@ -90,7 +87,7 @@ export default class Grid extends Component {
   render() {
     return (
       <div className={styles.grid_wrapper}>
-        {this._renderRowBody()}
+        {this.renderRowBody()}
       </div>
     )
   }
