@@ -12,10 +12,33 @@ export default class App extends React.Component {
     console.log('action APP', actionName, indexData);
   }
 
+
+
   render() {
+    let data = function (id) {
+      return new Promise((resolve, reject) => {
+        if (id == 555) {
+          resolve({ id: 555, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour 555' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream })
+          return;
+        }
+        resolve({
+          id,
+          created_at: '2018-02-23T09:43:08.928Z',
+          rule_detail: { id: 1, name: 'Ajax woi' },
+          cam_detail: { id: 2, name: 'kamera huawei' },
+          vas_detail: { id: 3, name: 'VAS 3' },
+          image: imageStream
+        });
+      })
+    }
+
+    let autoAjaxRowConfig = {
+      timer: 3000,
+      data
+    }
     return (
       <div>
-        <DataList type="table" config={configDebugSmall} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true}>
+        <DataList type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} autoAjaxRow={autoAjaxRowConfig}>
           <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
           </ActionBlock>
@@ -48,6 +71,13 @@ var config = [
 ]
 
 var configDebug = [
+  {
+    text: "ID",
+    type: "string",
+    textPath: "id",
+    valuePath: "id",
+    textColor: 'red'
+  },
   {
     text: "Image",
     type: "image",
@@ -118,33 +148,33 @@ var configDebugSmall = [
 var dataDebugSmall = [
   { id: 305, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1 }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: img },
   { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: '' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: null }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imgQuoteError },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 307, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: null }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imgQuoteError },
+  { id: 308, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
 ]
 
 var dataDebug = [
-  { id: 305, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1, name: 'Face Recognition' }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 305, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1, name: 'Face Recognition' }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 305, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1, name: 'Face Recognition' }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
-  { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 1, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1, name: 'Face Recognition' }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imageStream },
+  { id: 2, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 3, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 4, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 5, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 6, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 7, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 8, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 9, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 10, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1, name: 'Face Recognition' }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imageStream },
+  { id: 11, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 12, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 13, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 14, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 15, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 16, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 17, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 18, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 19, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 1, name: 'Face Recognition' }, cam_detail: { id: 2, name: 'kamera huawei' }, vas_detail: { id: 3, name: 'VAS 3' }, image: imageStream },
+  { id: 20, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 21, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
+  { id: 22, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
   { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
   { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },
   { id: 306, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream },

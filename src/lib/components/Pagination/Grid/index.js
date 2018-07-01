@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import noImage from '../../assets/images/no-image.png';
-import { getTextWidth } from '../../utils';
+import noImage from '../../../assets/images/no-image.png';
+import { getTextWidth } from '../../../utils';
 
 import styles from "./styles.scss";
 

@@ -16,12 +16,13 @@ export default class DataList extends Component {
       config: props.config,
       data: props.data,
       dataFilter: props.data,
-      enableActionBlock: props.enableActionBlock
+      enableActionBlock: props.enableActionBlock,
+      autoAjaxRow: props.autoAjaxRow
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    let { index, config, data, type } = this.state;
+    let { index, config, data, type, autoAjaxRow } = this.state;
     if (nextProps.type !== type) {
       this.setState({ type: nextProps.type });
     }
@@ -33,6 +34,9 @@ export default class DataList extends Component {
     }
     if (nextProps.index !== index) {
       this.setState({ index });
+    }
+    if (nextProps.autoAjaxRow !== autoAjaxRow) {
+      this.setState({ autoAjaxRow: nextProps.autoAjaxRow })
     }
   }
 
@@ -311,10 +315,10 @@ export default class DataList extends Component {
   };
 
   _renderViewType() {
-    let { index, type, config, dataFilter, enableActionBlock } = this.state;
+    let { index, type, config, dataFilter, enableActionBlock, autoAjaxRow } = this.state;
 
     return (
-      <Pagination type={type} config={config} data={dataFilter} onAction={this._action} index={index} enableActionBlock={enableActionBlock} >
+      <Pagination type={type} config={config} data={dataFilter} onAction={this._action} index={index} enableActionBlock={enableActionBlock} autoAjaxRow={autoAjaxRow}>
         {this.props.children}
       </Pagination>
     )

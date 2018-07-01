@@ -24,7 +24,8 @@ export default class Pagination extends Component {
       confirmDialogIndex: null,
       confirmDialogActionName: null,
       confirmDialogData: null,
-      width: 0
+      width: 0,
+      autoAjaxRow: props.autoAjaxRow
     };
 
     this.handleWindowResize = debounce(this.handleWindowResize.bind(this), 100); //delay trigger resize event
@@ -44,7 +45,7 @@ export default class Pagination extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let { config, data, type } = this.state;
+    let { config, data, type, autoAjaxRow } = this.state;
     if (nextProps.type !== type) {
       this.setState({ type: nextProps.type });
     }
@@ -53,6 +54,9 @@ export default class Pagination extends Component {
     }
     if (nextProps.data !== data) {
       this.setState({ data: nextProps.data, currentPage: 1 });
+    }
+    if (nextProps.autoAjaxRow !== autoAjaxRow) {
+      this.setState({ autoAjaxRow: nextProps.autoAjaxRow })
     }
   }
 
@@ -85,7 +89,7 @@ export default class Pagination extends Component {
   }
 
   clickPage = (val) => {
-    return event => {
+    return () => {
       let { currentPage, data, dataPerPage } = this.state;
       let min = 1;
       let max = Math.ceil(data.length / dataPerPage);
@@ -101,7 +105,7 @@ export default class Pagination extends Component {
   }
 
   renderViewType() {
-    let { index, type, config, data, currentPage, dataPerPage, enableActionBlock, width } = this.state;
+    let { index, type, config, data, currentPage, dataPerPage, enableActionBlock, width, autoAjaxRow } = this.state;
 
     const indexOfLastData = currentPage * dataPerPage;
     const indexOfFirstData = indexOfLastData - dataPerPage;
@@ -165,6 +169,15 @@ export default class Pagination extends Component {
 
     let newFormatData = parsingData(currentData, config, index, actionBlock, this.action, enableActionBlock);
 
+    let paramParsingData = {
+      currentData,
+      config,
+      index,
+      actionBlock,
+      action: this.action,
+      enableActionBlock
+    }
+
     let startDataNumber = 0;
     let endDataNumber = 0;
     if (newFormatData !== undefined) {
@@ -195,6 +208,7 @@ export default class Pagination extends Component {
             index={index}
             width={width}
             rebuildTooltip={this.rebuildTooltip}
+            autoAjaxRow={autoAjaxRow}
           >
             {actionBlock}
           </Grid>,
@@ -211,6 +225,8 @@ export default class Pagination extends Component {
             enableActionBlock={enableActionBlock}
             width={width}
             rebuildTooltip={this.rebuildTooltip}
+            autoAjaxRow={autoAjaxRow}
+            paramParsingData={paramParsingData}
           >
             {actionBlock}
           </Table>,

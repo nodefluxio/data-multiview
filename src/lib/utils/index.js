@@ -122,7 +122,7 @@ export function parsingData(data, config, indexPath, children, action, enableAct
           columnValue = moment(columnValue).format("DD MMM YYYY, HH:mm");
         }
       }
-      listColumn.push({ text: columnText, value: columnValue, index: indexValue });
+      listColumn.push({ text: columnText, data: columnValue, index: indexValue });
       return null;
     });
     listRow.push(listColumn);
@@ -137,12 +137,12 @@ export function parsingData(data, config, indexPath, children, action, enableAct
         if (indexConfig === indexData) {
           if (itemConfig.text === 'Action') {
             temp.type = 'Action';
-            temp.value = data;
+            temp.data = data;
           }
           else {
             temp.type = itemConfig.type;
             temp.textColor = itemConfig.textColor;
-            temp.value = data;
+            temp.data = data;
           }
         }
         return null;
