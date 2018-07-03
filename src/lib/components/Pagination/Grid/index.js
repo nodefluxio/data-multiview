@@ -70,7 +70,7 @@ export default class Grid extends Component {
         )
       })
       let actionTemp = itemRow.find(x => x.type === "Action");
-      actionTemp = actionTemp === undefined ? null : actionTemp.data.value
+      actionTemp = actionTemp === undefined ? null : actionTemp.data.data
       return (
         <div
           key={indexRow}
