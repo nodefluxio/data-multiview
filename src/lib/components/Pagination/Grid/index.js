@@ -49,7 +49,7 @@ export default class Grid extends Component {
       let imageVal =
         imageVar === null || imageVar === undefined
           ? noImage
-          : imageVar.value.value;
+          : imageVar.data.data;
 
       let listField = itemRow.filter(item => {
         return item.type !== "Action" && item.type !== "image"
@@ -61,22 +61,22 @@ export default class Grid extends Component {
           customStyle.color = item.textColor;
         }
 
-        let length = getTextWidth(item.value.text, 13);
-        let dataTip = length > 150 ? item.value.text.toString() : '';
+        let length = getTextWidth(item.data.text, 13);
+        let dataTip = length > 150 ? item.data.text.toString() : '';
         return (
           <div key={index} className="desc" style={customStyle} data-tip={dataTip}>
-            {item.value.text}
+            {item.data.text}
           </div>
         )
       })
       let actionTemp = itemRow.find(x => x.type === "Action");
-      actionTemp = actionTemp === undefined ? null : actionTemp.value.value
+      actionTemp = actionTemp === undefined ? null : actionTemp.data.value
       return (
         <div
           key={indexRow}
           className="box-wrapper"
         >
-          <div onClick={this.action(itemRow[0].value.index)} className="image-wrapper" style={{ background: `url(${imageVal})` }} />
+          <div onClick={this.action(itemRow[0].data.index)} className="image-wrapper" style={{ background: `url(${imageVal})` }} />
           <div className="block" ><div className="action-wrapper">{actionTemp}</div></div>
           {listFieldHtml}
         </div>

@@ -38,7 +38,7 @@ export default class App extends React.Component {
     }
     return (
       <div>
-        <DataList type="table" config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true} autoAjaxRow={autoAjaxRowConfig}>
+        <DataList type="grid" config={configLol} data={dataLol} onAction={this._action} index="id" enableActionBlock={true} autoAjaxRow={autoAjaxRowConfig}>
           <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
           </ActionBlock>
@@ -62,6 +62,21 @@ export default class App extends React.Component {
 3. type contain image, string, json, date, datetime
 4. need more test case
 */
+
+let configLol = [
+  { text: 'Image', type: 'image', textPath: 'res_streamer', valuePath: 'res_streamer' },
+  { text: 'Camera Name', type: 'string', textPath: 'camera_name', valuePath: 'camera_name' },
+  { text: 'Rule Name', type: 'string', textPath: 'rule_detail.name', valuePath: 'rule_detail.name', textColor: '#1798ff' }
+]
+
+let dataLol = [
+  {
+    raw_streamer: "http://10.7.0.200:9006/2.raw.mjpg",
+    res_streamer: "http://10.7.0.200:9011/2-734.res.mjpg",
+    camera_name: "kamera huawei BAGUS1",
+    "rule_detail.name": "Crowd Behaviour"
+  }
+]
 var config = [
   { text: 'Image', type: 'image', textPath: 'image', valuePath: 'image', textColor: 'red' },
   { text: 'Fullname', type: 'string', textPath: 'fullname', valuePath: 'fullname' },
