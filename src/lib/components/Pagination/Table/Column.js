@@ -37,7 +37,7 @@ export default class Column extends Component {
     let imageVal =
       item === null || item === undefined
         ? noImage
-        : item.data.value;
+        : item.data.data;
 
     let actionView = item.type === "Action" ? null : action('view', item.data.index);
     let customStyle = {};
@@ -50,6 +50,8 @@ export default class Column extends Component {
 
       if (enableActionBlock) {
         return <div onClick={actionView} key={index} className="column-wrapper" style={customStyle}>{value}</div>;
+      } else {
+        return null;
       }
     } else {
       if (item.textColor !== undefined && item.textColor !== null) {

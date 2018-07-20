@@ -7,9 +7,31 @@ let img = 'https://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-
 let imgQuoteError = `http://192.168.100.71/target-data/fr/target-person-images/1111112222233333@Rizkifika-Asanuli'nam/qTD8vYa.jpeg`;
 let imageStream = 'http://192.168.100.125:8080/';
 export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      dataList: [],
+      viewType: 1
+    }
+  }
+  componentWillMount() {
+    let url = 'http://localhost:5010/dumps/lp-recog/lpr_event/unknown/?limit=10000';
+    let $$ = this;
+    fetch(url).then((resp) => resp.json())
+      .then(function (data) {
+        $$.setState({ dataList: data })
+      }).catch(function (err) {
+      })
+  }
 
   _action = (actionName, indexData) => {
     console.log('action APP', actionName, indexData);
+  }
+
+  changeView = (view) => {
+    return event=> {
+      this.setState({viewType: view})
+    }
   }
 
 
@@ -36,9 +58,18 @@ export default class App extends React.Component {
       timer: 3000,
       data
     }
+
+    let { dataList, viewType } = this.state;
+    console.log('data gua', dataList);
+    if (dataList.length == 0) {
+      return null;
+    }
+    let view = viewType == 1 ? 'grid' : 'table';
     return (
       <div>
-        <DataList type="grid" config={configLol} data={dataLol} onAction={this._action} index="id" enableActionBlock={true} autoAjaxRow={autoAjaxRowConfig}>
+        <button onClick={this.changeView(1)}>VIEW </button>
+        <button onClick={this.changeView(2)}>Change</button>
+        <DataList type={view} config={configError} data={dataList} onAction={this._action} index="id" enableActionBlock={true}>
           <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
           </ActionBlock>
@@ -62,6 +93,30 @@ export default class App extends React.Component {
 3. type contain image, string, json, date, datetime
 4. need more test case
 */
+
+let configError = [
+  {
+    text: "Image",
+    type: "image",
+    textPath: "thumbnail",
+    valuePath: "thumbnail"
+  },
+  {
+    text: "plate",
+    type: "string",
+    textPath: "plate_number",
+    valuePath: "plate_number"
+  },
+  {
+    text: "date",
+    type: "datetime",
+    textPath: "timestamp",
+    valuePath: "timestamp"
+  },
+  {
+    text: "Action"
+  }
+];
 
 let configLol = [
   { text: 'Image', type: 'image', textPath: 'res_streamer', valuePath: 'res_streamer' },
