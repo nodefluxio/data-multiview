@@ -37,39 +37,39 @@ export default class App extends React.Component {
 
 
   render() {
-    let data = function (id) {
-      return new Promise((resolve, reject) => {
-        if (id == 555) {
-          resolve({ id: 555, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour 555' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream })
-          return;
-        }
-        resolve({
-          id,
-          created_at: '2018-02-23T09:43:08.928Z',
-          rule_detail: { id: 1, name: 'Ajax woi' },
-          cam_detail: { id: 2, name: 'kamera huawei' },
-          vas_detail: { id: 3, name: 'VAS 3' },
-          image: imageStream
-        });
-      })
-    }
+    // let data = function (id) {
+    //   return new Promise((resolve, reject) => {
+    //     if (id == 555) {
+    //       resolve({ id: 555, created_at: '2018-02-23T09:43:08.928Z', rule_detail: { id: 2, name: 'Crowd Behaviour 555' }, cam_detail: { id: 3, name: 'kamera avigilon' }, vas_detail: { id: 4, name: 'VAS 4' }, image: imageStream })
+    //       return;
+    //     }
+    //     resolve({
+    //       id,
+    //       created_at: '2018-02-23T09:43:08.928Z',
+    //       rule_detail: { id: 1, name: 'Ajax woi' },
+    //       cam_detail: { id: 2, name: 'kamera huawei' },
+    //       vas_detail: { id: 3, name: 'VAS 3' },
+    //       image: imageStream
+    //     });
+    //   })
+    // }
 
-    let autoAjaxRowConfig = {
-      timer: 3000,
-      data
-    }
+    // let autoAjaxRowConfig = {
+    //   timer: 3000,
+    //   data
+    // }
 
     let { dataList, viewType } = this.state;
-    console.log('data gua', dataList);
-    if (dataList.length == 0) {
-      return null;
-    }
+    // console.log('data gua', dataList);
+    // if (dataList.length == 0) {
+    //   return null;
+    // }
     let view = viewType == 1 ? 'grid' : 'table';
     return (
       <div>
         <button onClick={this.changeView(1)}>VIEW </button>
         <button onClick={this.changeView(2)}>Change</button>
-        <DataList type={view} config={configError} data={dataList} onAction={this._action} index="id" enableActionBlock={true}>
+        <DataList type={view} config={configDebug} data={dataDebug} onAction={this._action} index="id" enableActionBlock={true}>
           <ActionBlock actionName="edit" >
             <i className="icon icon-pencil" />
           </ActionBlock>
